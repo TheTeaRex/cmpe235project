@@ -32,7 +32,7 @@
       </div>
 
       <div data-role='content'>
-        <form name='addclass_form' id='addclass_form' method ='post' action='backend.php'>
+        <form name='addclass_form' id='addclass_form' onSubmit='return formValidation()'  method ='post' action='backend.php'>
           <div>
             Class Name:
             <input type='text' name='classname' id='classname' placeholder='Enter Class Name'>

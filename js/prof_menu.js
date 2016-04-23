@@ -26,5 +26,12 @@ function addComponent(){
 }
 
 function rmComponent(obj){
-    obj.parentElement.parentElement.parentElement.removeChild(obj.parentElement.parentElement);
+    document.getElementById('components').removeChild(obj.parentElement.parentElement);
+}
+
+function formValidation(){
+    if(document.getElementById('classname').value.trim() == '' ) {
+        alert('Please enter a class name.');
+        return false;
+    }
 }
