@@ -1,37 +1,18 @@
-function form_validation(){
-  // trim the front and back space
-  if(typeof(String.prototype.trim) === "undefined"){
-    String.prototype.trim = function() {
-      return String(this).replace(/^\s+|\s+$/g, '');
-    };
-  }
+$(function() {
+    var components = $('#components');
+    var i = $('#components #block').size() + 1;
 
-  var inputs = new Array();
-  var input_var = ['firstname', 'middlename', 'lastname', 'hphone', 'cphone',
-    'address', 'gender', 'suggestion'];
+    console.log(i);
 
-  for (var i = 0; i < input_var.length; i++){
-    inputs[input_var[i]] = document.getElementById(input_var[i]).value.trim();
-    if (inputs[input_var[i]] == ''){
-      alert('Please fill in all the fields!');
-      return false;
-    }
-  }
+    $('#addclass_form').on('click', '#addComponent', function() {
+        $(components).append("<div class='ui-grid-b'><div id='block' class='ui-block-a big'><input type='text' name='component[]' id='item" + i + "' placeholder='Component'></div><div class='ui-block-b mid'><input type='text' name='percentage[]' id='percentage' placeholder='Percentage'></div><div class='ui-block-c sma'><button type='button' id='rmComp' class='ui-btn ui-icon-delete ui-shadow ui-corner-all ui-btn-icon-notext'></button></div></div>").trigger('create');
+        i++;
+        return false;
+    });
 
-  var res = inputs['hphone'].search(/^(\(\d{3}\)\s\d{3}\s\d{4}|\(\d{3}\)\s\d{3}-\d{4}|\d{10}|\d{3}\s\d{3}\s\d{4})$/);
-  if ( res == -1 ){
-    alert('Please provide a valid home phone number!');
-    return false;
-  }
-  res = inputs['cphone'].search(/^(\(\d{3}\)\s\d{3}\s\d{4}|\(\d{3}\)\s\d{3}-\d{4}|\d{10}|\d{3}\s\d{3}\s\d{4})$/);
-  if ( res == -1 ){
-    alert('Please provide a valid cell phone number!');
-    return false;
-  }
-
-  if (document.getElementById('agree').checked == false){
-    alert('You will have to check the I agree box.');
-    return false;
-  }
-
-}
+    $('#addclass_form').on('click', '#rmComp', function() {
+        $(this).parent('div').parent('div').remove();
+        i--;
+        return false;
+    });
+});

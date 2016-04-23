@@ -32,18 +32,20 @@
       </div>
 
       <div data-role='content'>
-        <form name='addclass_form' method ='post' action='backend.php'>
+        <form name='addclass_form' id='addclass_form' method ='post' action='backend.php'>
           <div>
             Class Name:
             <input type='text' name='classname' id='classname' placeholder='Enter Class Name'>
           </div>
-          <div class='ui-grid-b'>
-            <div class='ui-block-a big'><input type='text' name='item' id='item' placeholder='Enter an Item' ></div>
-            <div class='ui-block-b mid'><input type='text' name='percentage' id='percentage' placeholder='Enter the Percentage'></div>
-            <div class='ui-block-c sma'><button type='button' class='ui-btn ui-shadow ui-corner-all' data-mini='true'>Remove</button></div>
+          <div id='components'>
+            <div id='compBlock' class='ui-grid-b'>
+              <div class='ui-block-a big'><input type='text' name='component[]' id='item' placeholder='Component'></div>
+              <div class='ui-block-b mid'><input type='text' name='percentage[]' id='percentage' placeholder='Percentage'></div>
+              <div class='ui-block-c sma'><button type='button' class='ui-btn ui-icon-delete ui-shadow ui-corner-all ui-btn-icon-notext' disabled></button></div>
+            </div>
           </div>
           <div>
-            <button type='button' class='ui-btn ui-shadow ui-corner-all'>Add another item</button>
+            <a href='#' id='addComponent' class='ui-btn ui-shadow ui-corner-all'>Add another component</a>
           </div>
           <br>
           <input type='submit' class='ui-btn ui-btn-b ui-shadow ui-corner-all' value='Create Class'>
