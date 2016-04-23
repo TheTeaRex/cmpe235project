@@ -38,14 +38,14 @@
             <input type='text' name='classname' id='classname' placeholder='Enter Class Name'>
           </div>
           <div id='components'>
-            <div id='compBlock' class='ui-grid-b'>
-              <div class='ui-block-a big'><input type='text' name='component[]' id='item' placeholder='Component'></div>
-              <div class='ui-block-b mid'><input type='text' name='percentage[]' id='percentage' placeholder='Percentage'></div>
+            <div class='ui-grid-b'>
+              <div class='ui-block-a big'><input type='text' name='component0' id='component0' placeholder='Component'></div>
+              <div class='ui-block-b mid'><input type='text' name='percentage0' id='percentage0' placeholder='Percentage'></div>
               <div class='ui-block-c sma'><button type='button' class='ui-btn ui-icon-delete ui-shadow ui-corner-all ui-btn-icon-notext' disabled></button></div>
             </div>
           </div>
           <div>
-            <a href='#' id='addComponent' class='ui-btn ui-shadow ui-corner-all'>Add another component</a>
+            <a href='#' id='addComponent' onClick='addComponent()' class='ui-btn ui-shadow ui-corner-all'>Add another component</a>
           </div>
           <br>
           <input type='submit' class='ui-btn ui-btn-b ui-shadow ui-corner-all' value='Create Class'>
