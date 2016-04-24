@@ -12,7 +12,6 @@ function addComponent(){
 
 function rmComponent(obj){
     document.getElementById('components').removeChild(obj.parentElement.parentElement);
-    setCorrectName();
 }
 
 function formValidation(){
@@ -22,19 +21,41 @@ function formValidation(){
         alert('Please enter a class name.');
         return false;
     }
+
+    var compChildren = document.getElementById('components').children;
+    var compSize = compChildren.length;
+    var percentage = 0;
+    for( var i = 0; i < compSize; i++ ){
+        var temp = compChildren[i];
+        if( temp.getElementsByTagName('input')[0].value.trim() == '' ||
+            temp.getElementsByTagName('input')[1].value.trim() == '' ||
+            temp.getElementsByTagName('input')[2].value.trim() == ''  ){
+                alert('Please enter all the fields.');
+                return false;
+        }
+        if( isNaN(temp.getElementsByTagName('input')[1].value.trim()) ||
+            isNaN(temp.getElementsByTagName('input')[2].value.trim())  ){
+                alert('Please make sure all the Max Point and Percentage enteries are integers');
+                return false;
+        }
+        percentage += parseInt(temp.getElementsByTagName('input')[2].value.trim());
+    }
+    if(percentage != 100){
+        alert('The percentage enteries do not add up to 100.');
+        return false;
+    }
 }
 
 function setCorrectName(){
-    var components = document.getElementById('components');
-    compSize = components.children.length;
-    blocks = components.children;
-    for( var i = 0; i < compSize ; i++){
-        blocks[i].getElementsByTagName('input')[0].name = 'component' + i;
-        blocks[i].getElementsByTagName('input')[1].name = 'point' + i;
-        blocks[i].getElementsByTagName('input')[2].name = 'per' + i;
+    var compChildren = document.getElementById('components').children;
+    compSize = compChildren.length;
+    for( var i = 0; i < compSize ; i++ ){
+        compChildren[i].getElementsByTagName('input')[0].name = 'component' + i;
+        compChildren[i].getElementsByTagName('input')[1].name = 'point' + i;
+        compChildren[i].getElementsByTagName('input')[2].name = 'per' + i;
 
-        blocks[i].getElementsByTagName('input')[0].id = 'component' + i;
-        blocks[i].getElementsByTagName('input')[1].id = 'point' + i;
-        blocks[i].getElementsByTagName('input')[2].id = 'per' + i;
+        compChildren[i].getElementsByTagName('input')[0].id = 'component' + i;
+        compChildren[i].getElementsByTagName('input')[1].id = 'point' + i;
+        compChildren[i].getElementsByTagName('input')[2].id = 'per' + i;
     }
 }
