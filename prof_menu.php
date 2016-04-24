@@ -34,14 +34,20 @@
       <div data-role='content'>
         <form name='addclass_form' id='addclass_form' onSubmit='return formValidation()'  method ='post' action='backend.php'>
           <div>
-            Class Name:
+            <b>Class Name</b>
             <input type='text' name='classname' id='classname' placeholder='Enter Class Name'>
           </div>
+          <div class='ui-grid-c'>
+            <div class='ui-block-a main'><b>Component</b></div>
+            <div class='ui-block-b point'><b>Max Point</b></div>
+            <div class='ui-block-c per'><b>Percentage</b></div>
+          </div>
           <div id='components'>
-            <div class='ui-grid-b'>
-              <div class='ui-block-a big'><input type='text' name='component0' id='component0' placeholder='Component'></div>
-              <div class='ui-block-b mid'><input type='text' name='percentage0' id='percentage0' placeholder='Percentage'></div>
-              <div class='ui-block-c sma'><button type='button' class='ui-btn ui-icon-delete ui-shadow ui-corner-all ui-btn-icon-notext' disabled></button></div>
+            <div class='ui-grid-c'>
+              <div class='ui-block-a main'><input type='text' name='component0' id='component' placeholder='Component'></div>
+              <div class='ui-block-b point'><input type='text' name='point0' id='point' placeholder='Max Point'></div>
+              <div class='ui-block-c per'><input type='text' name='percentage0' id='percentage0' placeholder='Percentage'></div>
+              <div class='ui-block-d rm'><button type='button' class='ui-btn ui-icon-delete ui-shadow ui-corner-all ui-btn-icon-notext' disabled></button></div>
             </div>
           </div>
           <div>
