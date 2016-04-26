@@ -6,7 +6,7 @@
     <link rel='stylesheet' href='/css/prof_menu.css' />
     <script src='/jquery.mobile-1.4.5/jquery.min.js'></script>
     <script src='/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js'></script>
-    <script src='/js/prof_menu.js'></script>
+    <script src='js/prof_menu.js'></script>
   </head>
   <body>
     <!-- menu -->
