@@ -54,6 +54,7 @@
             <a href='#' id='addComponent' onClick='addComponent()' class='ui-btn ui-shadow ui-corner-all'>Add another component</a>
           </div>
           <br>
+          <input type='hidden' name='compSize' id='compSize'>
           <input type='submit' class='ui-btn ui-btn-b ui-shadow ui-corner-all' value='Create Class'>
         </form>
       </div>

@@ -1,6 +1,10 @@
 function addComponent(){
     var components = document.getElementById('components');
-    var i = components.children.length;
+    var size = components.children.length;
+    if (size >= 10) {
+        alert('Sorry, you can only have maximum 10 components for your class.');
+        return;
+    }
     var str = "<div class='ui-grid-c'>";
         str += "<div class='ui-block-a main'><input type='text' name='component' id='component' placeholder='Component'></div>";
         str += "<div class='ui-block-b point'><input type='text' name='point' id='point' placeholder='Max Point'></div>";
@@ -44,6 +48,8 @@ function formValidation(){
         alert('The percentage enteries do not add up to 100.');
         return false;
     }
+    // it is ready to be sent to the back end
+    document.getElementById('compSize').value = compSize;
 }
 
 function setCorrectName(){
