@@ -74,13 +74,20 @@ function loadClassesToSelect() {
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             var json = JSON.parse(xhttp.responseText);
-            for (var i = 0; i < json.length; i++) {
-                var opt = document.createElement('option');
-                opt.text = json[i].className;
-                document.getElementById('selectclassselect').add(opt);
-                //$('<option>').val(json[i].className).text(json[i].className).appendTo('#selectclassselect');
+            if (json.length == 0) {
+                document.getElementById('selectclassdiv').style.display = 'none';
+                document.getElementById('noclassdiv').style.display = 'block';
+            } else {
+                document.getElementById('selectclassdiv').style.display = 'block';
+                document.getElementById('noclassdiv').style.display = 'none';
+                for (var i = 0; i < json.length; i++) {
+                    var opt = document.createElement('option');
+                    opt.text = json[i].className;
+                    document.getElementById('selectclassselect').add(opt);
+                    //$('<option>').val(json[i].className).text(json[i].className).appendTo('#selectclassselect');
+                }
+                $('#selectclassselect').selectmenu('refresh', true );
             }
-            $('#selectclassselect').selectmenu('refresh', true );
         }
     }
 
@@ -89,6 +96,6 @@ function loadClassesToSelect() {
 }
 
 // load the classes when going to the selectclass id
-$(document).on('pageinit', '#selectaclass', function(){
+$(document).on('pagebeforeshow', '#selectaclass', function(){
     loadClassesToSelect();
 });

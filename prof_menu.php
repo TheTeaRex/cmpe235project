@@ -70,15 +70,23 @@
       </div>
 
       <div data-role='content'>
-        <form name='selectclass_form' id=selectclass_form' onSubmit='return formValidation()'  method ='post' action='prof_menu_addclass_backend.php'>
-          <div>
+        <!-- if there is a class to select -->
+        <div name='selectclassdiv' id='selectclassdiv' style='display:none'>
+          <form name='selectclass_form' id=selectclass_form' onSubmit='return formValidation()'  method ='post' action='prof_menu_addclass_backend.php'>
             <b>Select A Class:</b>
             <select name='selectclassselect' id='selectclassselect' data-native-menu='false'>
-              <option value='choose_one' data-placeholder='true'>Choose one...</option>
             </select>
-          </div>
-          <input type='submit' class='ui-btn ui-btn-b ui-shadow ui-corner-all' value='Create Class'>
-        </form>
+            <input type='submit' class='ui-btn ui-btn-b ui-shadow ui-corner-all' value='Create Class'>
+          </form>
+        </div>
+        <!-- if there is no class to select -->
+        <div name='noclassdiv' id='noclassdiv' align='center' style='display:block'>
+          <p><b>
+            Currently there isn't a class in the database
+            <br>
+            Please add one and come back!
+          </b></p>
+        </div>
       </div>
     </div>
     <!-- end of the add a class -->
