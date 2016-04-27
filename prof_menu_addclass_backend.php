@@ -1,10 +1,11 @@
 <html>
 <body>
 <?php
-  $server = 'tearexprojectscom.ipagemysql.com';
-  $username = 'cmpe235';
-  $password = 'sjsucmpe235';
-  $database = 'cmpe235';
+  $ini = parse_ini_file('config.ini');
+  $server = $ini['server'];
+  $username = $ini['username'];
+  $password = $ini['password'];
+  $database = $ini['database'];
 
   // create connection
   $conn = new mysqli($server, $username, $password, $database);
