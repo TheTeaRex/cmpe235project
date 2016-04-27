@@ -3,7 +3,7 @@
   <head>
     <title>Forms with jQuery Mobile</title>
     <link rel='stylesheet' href='/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css' />
-    <link rel='stylesheet' href='/css/prof_menu.css' />
+    <link rel='stylesheet' href='css/prof_menu.css' />
     <script src='/jquery.mobile-1.4.5/jquery.min.js'></script>
     <script src='/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js'></script>
     <script src='js/prof_menu.js'></script>
