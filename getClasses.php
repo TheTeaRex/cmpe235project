@@ -14,6 +14,7 @@
   }
 
   $sql = 'select * from classes order by className';
+  //$sql = 'select * from blank';
   $result = mysqli_query($conn, $sql) or die('Error in selecting' . mysqli_error($conn));
 
   $newarray = array();
