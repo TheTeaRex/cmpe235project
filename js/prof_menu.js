@@ -48,6 +48,7 @@ function formValidation() {
         alert('The percentage enteries do not add up to 100.');
         return false;
     }
+
     // it is ready to be sent to the back end
     document.getElementById('classname').value = document.getElementById('classname').value.toUpperCase();
     document.getElementById('compSize').value = compSize;
@@ -67,17 +68,12 @@ function setCorrectName() {
     }
 }
 
-function loadClasses() {
+function loadClassesToSelect() {
     var xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
-            //var opt = document.createElement('option');
-            //opt.innerHTML = xhttp.responseText;
-            //document.getElementById('selectclassname').appendChild(opt);
-            //document.getElementById('test').innerHTML = xhttp.responseText;
             var json = JSON.parse(xhttp.responseText);
-            var str = '';
             for (var i = 0; i < json.length; i++) {
                 var opt = document.createElement('option');
                 opt.text = json[i].className;
@@ -92,6 +88,7 @@ function loadClasses() {
     xhttp.send();
 }
 
-$(document).on('pageinit', '#selectaclass', function(){ 
-    loadClasses();
+// load the classes when going to the selectclass id
+$(document).on('pageinit', '#selectaclass', function(){
+    loadClassesToSelect();
 });

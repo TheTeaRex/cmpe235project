@@ -21,14 +21,6 @@
     $newarray[] = $row;
   }
 
-  /*
-  $size = count($newarray);
-  for( $i = 0; $i < $size; $i++) {
-    echo $newarray[$i]['className'];
-    echo '<br><br>';
-  }
-  */
-
   echo json_encode($newarray);
 
   $result->free();

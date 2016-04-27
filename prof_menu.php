@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Forms with jQuery Mobile</title>
+    <title>Welcome to Professor Menu</title>
     <link rel='stylesheet' href='/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css' />
     <link rel='stylesheet' href='css/prof_menu.css' />
     <script src='/jquery.mobile-1.4.5/jquery.min.js'></script>
@@ -32,7 +32,7 @@
       </div>
 
       <div data-role='content'>
-        <form name='addclass_form' id='addclass_form' onSubmit='return formValidation()'  method ='post' action='prof_menu_addclass_backend.php'>
+        <form name='addclass_form' id='addclass_form' onSubmit='return formValidation()'  method ='post' action='addclass_confirmation.php'>
           <div>
             <b>Class Name</b>
             <input type='text' name='classname' id='classname' placeholder='Enter Class Name'>
