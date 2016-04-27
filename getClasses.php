@@ -13,7 +13,7 @@
     die('Connection failed: '.$conn->connect_error);
   }
 
-  $sql = 'select className from classes order by className';
+  $sql = 'select * from classes order by className';
   $result = mysqli_query($conn, $sql) or die('Error in selecting' . mysqli_error($conn));
 
   $newarray = array();

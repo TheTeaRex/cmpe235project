@@ -17,8 +17,8 @@
 
       <div data-role='content'>
         <a href='#addaclass' data-transition='pop' class='ui-btn ui-shadow ui-corner-all'>Add a Class</a>
-        <a href='#editaclass' class='ui-btn ui-shadow ui-corner-all'>Edit a Class</a>
-        <a href='#editstudentscore' class='ui-btn ui-shadow ui-corner-all'>Edit a Student's Score</a>
+        <a href='#selectaclass' data-transition='pop' class='ui-btn ui-shadow ui-corner-all'>Edit a Class</a>
+        <a href='#editstudentscore' data-transition='pop' class='ui-btn ui-shadow ui-corner-all'>Edit a Student's Score</a>
       </div>
 
     </div>
@@ -55,6 +55,28 @@
           </div>
           <br>
           <input type='hidden' name='compSize' id='compSize'>
+          <input type='submit' class='ui-btn ui-btn-b ui-shadow ui-corner-all' value='Create Class'>
+        </form>
+      </div>
+    </div>
+    <!-- end of the add a class -->
+
+
+    <!-- select a class -->
+    <div data-role='page' id='selectaclass'>
+      <div data-role='header'>
+        <a href='#menu' data-transition='slide' data-icon='back'>Back</a>
+        <h1>Select a Class</h1>
+      </div>
+
+      <div data-role='content'>
+        <form name='selectclass_form' id=selectclass_form' onSubmit='return formValidation()'  method ='post' action='prof_menu_addclass_backend.php'>
+          <div>
+            <b>Select A Class:</b>
+            <select name='selectclassselect' id='selectclassselect' data-native-menu='false'>
+              <option value='choose_one' data-placeholder='true'>Choose one...</option>
+            </select>
+          </div>
           <input type='submit' class='ui-btn ui-btn-b ui-shadow ui-corner-all' value='Create Class'>
         </form>
       </div>
