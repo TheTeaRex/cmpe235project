@@ -6,11 +6,11 @@ function addComponent(idInput) {
         return;
     }
     var str = "<div class='ui-grid-c'>";
-        str += "<div class='ui-block-a main'><input type='text' name='component' id='component' placeholder='Component'></div>";
-        str += "<div class='ui-block-b point'><input type='text' name='point' id='point' placeholder='Max Point'></div>";
-        str += "<div class='ui-block-c per'><input type='text' name='percentage' id='percentage' placeholder='Percentage'></div>";
-        str += "<div class='ui-block-d rm'><button type='button' onClick='rmComponent(this)' class='ui-btn ui-icon-delete ui-shadow ui-corner-all ui-btn-icon-notext'></button></div>";
-        str += "</div>";
+    str += "<div class='ui-block-a main'><input type='text' name='component' id='component' placeholder='Component'></div>";
+    str += "<div class='ui-block-b point'><input type='text' name='point' id='point' placeholder='Max Point'></div>";
+    str += "<div class='ui-block-c per'><input type='text' name='percentage' id='percentage' placeholder='Percentage'></div>";
+    str += "<div class='ui-block-d rm'><button type='button' onClick='rmComponent(this)' class='ui-btn ui-icon-delete ui-shadow ui-corner-all ui-btn-icon-notext'></button></div>";
+    str += "</div>";
     $(components).append(str).trigger('create');
 }
 
@@ -18,7 +18,7 @@ function rmComponent(obj) {
     obj.parentElement.parentElement.parentElement.removeChild(obj.parentElement.parentElement);
 }
 
-function formValidation(classinput, componentinput) {
+function formValidation(classinput, componentinput, sizeinput, isDelete=false) {
     setCorrectName(componentinput);
     // checking if the classname is provided
     if(document.getElementById(classinput).value.trim() == '' ) {
@@ -51,7 +51,7 @@ function formValidation(classinput, componentinput) {
 
     // it is ready to be sent to the back end
     document.getElementById(classinput).value = document.getElementById(classinput).value.toUpperCase();
-    document.getElementById('compSize').value = compSize;
+    document.getElementById(sizeinput).value = compSize;
 }
 
 function setCorrectName(input) {
@@ -96,15 +96,46 @@ function loadClassesToSelect() {
 }
 
 function loadClassInfo() {
+    var maxComp = 10;
     var xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             var json = JSON.parse(xhttp.responseText);
+
+            while (document.getElementById('editComponents').children.length > 1) {
+               document.getElementById('editComponents').removeChild(document.getElementById('editComponents').children[1]);
+            }
+
             for (var i = 0; i < json.length; i++) {
                 if (json[i].className == document.getElementById('selectclassselect').value) {
                     document.getElementById('editclass').style.display = 'block';
                     document.getElementById('selectclassname').value = json[i].className;
+                    var compChildren = document.getElementById('editComponents').children;
+                    tag = compChildren[0].getElementsByTagName('input');
+                    tag[0].value = json[i]['comp0'];
+                    tag[1].value = json[i]['mpoint0'];
+                    tag[2].value = json[i]['percentage0'];
+                    for (var j = 1; j < maxComp; j++) {
+                        comp = 'comp' + j;
+                        point = 'mpoint' + j;
+                        per = 'percentage' + j;
+                        if (json[i][comp] == null) break;
+
+                        var str = "<div class='ui-grid-c'>";
+                        str += "<div class='ui-block-a main'><input type='text' name='component' id='component' placeholder='Component'></div>";
+                        str += "<div class='ui-block-b point'><input type='text' name='point' id='point' placeholder='Max Point'></div>";
+                        str += "<div class='ui-block-c per'><input type='text' name='percentage' id='percentage' placeholder='Percentage'></div>";
+                        str += "<div class='ui-block-d rm'><button type='button' onClick='rmComponent(this)' class='ui-btn ui-icon-delete ui-shadow ui-corner-all ui-btn-icon-notext'></button></div>";
+                        str += "</div>";
+                        $('#editComponents').append(str).trigger('create');
+
+                        var compChildren = document.getElementById('editComponents').children;
+                        tag = compChildren[j].getElementsByTagName('input');
+                        tag[0].value = json[i][comp];
+                        tag[1].value = json[i][point];
+                        tag[2].value = json[i][per];
+                    }
                     break;
                 }
             }
@@ -119,3 +150,8 @@ function loadClassInfo() {
 $(document).on('pagebeforeshow', '#selectaclass', function(){
     loadClassesToSelect();
 });
+
+function deleteClass() {
+    var classname = document.getElementById('selectclassname').value;
+    return confirm('Are you sure you want to delete ' + classname + '?');
+}

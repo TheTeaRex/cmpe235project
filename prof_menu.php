@@ -32,7 +32,7 @@
       </div>
 
       <div data-role='content'>
-        <form name='addclass_form' id='addclass_form' onSubmit='return formValidation("classname", "components")'  method ='post' action='addclass_confirmation.php'>
+        <form name='addclass_form' id='addclass_form' onSubmit='return formValidation("classname", "components", "compSize")'  method ='post' action='addclass_confirmation.php'>
           <div>
             <b>Class Name</b>
             <input type='text' name='classname' id='classname' placeholder='Enter Class Name'>
@@ -72,7 +72,7 @@
       <div data-role='content'>
         <!-- if there is a class to select -->
         <div name='selectclassdiv' id='selectclassdiv' style='display:none'>
-          <form name='selectclass_form' id=selectclass_form' method ='post' action='updateClass_confirmation.php'>
+          <form name='selectclass_form' id=selectclass_form' method ='post' onSubmit='return formValidation("selectclassname", "editComponents", "selectcompSize", true)' action='updateClass_confirmation.php'>
 
             <b>Select A Class:</b>
             <select name='selectclassselect' id='selectclassselect' data-native-menu='false' onChange='loadClassInfo()'>
@@ -102,9 +102,10 @@
                 <a href='#' onClick='addComponent("editComponents")' class='ui-btn ui-shadow ui-corner-all'>Add another component</a>
               </div>
               <br>
+              <input type='hidden' name='selectcompSize' id='selectcompSize'>
               <div class='ui-grid-a'>
-                <div class='ui-block-a'><input type='submit' class='ui-btn ui-btn-b ui-shadow ui-corner-all' value='Delete Class'></div>
-                <div class='ui-block-b'><input type='submit' class='ui-btn ui-btn-b ui-shadow ui-corner-all' value='Submit'></div>
+                <div class='ui-block-a'><input type='submit' onClick='return deleteClass()' name='action' class='ui-btn ui-btn-b ui-shadow ui-corner-all' data-icon='delete' value='Delete Class'></div>
+                <div class='ui-block-b'><input type='submit' name='action' class='ui-btn ui-btn-b ui-shadow ui-corner-all' data-icon='check' value='Submit'></div>
               </div>
 
             </div>

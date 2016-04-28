@@ -28,7 +28,7 @@
     $size = $_POST[compSize];
     $sql = "insert into classes (className";
 
-    for ($x = 0; $x < $size; $x++){
+    for ($x = 0; $x < $size; $x++) {
       $sql .= ", comp" . $x . ", mpoint" . $x . ", percentage" . $x;
     }
 
@@ -69,16 +69,6 @@
     $conn->close();
 
     echo "<a href='#menu' data-transition='pop' class='ui-btn ui-shadow ui-corner-all'>Go Back</a>";
-    /*
-    echo '<br><br>';
-    print_r($_POST);
-    echo '<br><br>';
-    print_r($_POST[classname]);
-    echo '<br><br>';
-    print_r($_POST[component0]);
-    echo '<br><br>';
-    print_r($_POST[per0]);
-     */
   ?>
 </body>
 </html>
