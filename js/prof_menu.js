@@ -1,5 +1,5 @@
-function addComponent() {
-    var components = document.getElementById('components');
+function addComponent(idInput) {
+    var components = document.getElementById(idInput);
     var size = components.children.length;
     if (size >= 10) {
         alert('Sorry, you can only have maximum 10 components for your class.');
@@ -15,18 +15,18 @@ function addComponent() {
 }
 
 function rmComponent(obj) {
-    document.getElementById('components').removeChild(obj.parentElement.parentElement);
+    obj.parentElement.parentElement.parentElement.removeChild(obj.parentElement.parentElement);
 }
 
-function formValidation() {
-    setCorrectName();
+function formValidation(classinput, componentinput) {
+    setCorrectName(componentinput);
     // checking if the classname is provided
-    if(document.getElementById('classname').value.trim() == '' ) {
+    if(document.getElementById(classinput).value.trim() == '' ) {
         alert('Please enter a class name.');
         return false;
     }
 
-    var compChildren = document.getElementById('components').children;
+    var compChildren = document.getElementById(componentinput).children;
     var compSize = compChildren.length;
     var percentage = 0;
     for (var i = 0; i < compSize; i++) {
@@ -50,12 +50,12 @@ function formValidation() {
     }
 
     // it is ready to be sent to the back end
-    document.getElementById('classname').value = document.getElementById('classname').value.toUpperCase();
+    document.getElementById(classinput).value = document.getElementById(classinput).value.toUpperCase();
     document.getElementById('compSize').value = compSize;
 }
 
-function setCorrectName() {
-    var compChildren = document.getElementById('components').children;
+function setCorrectName(input) {
+    var compChildren = document.getElementById(input).children;
     compSize = compChildren.length;
     for (var i = 0; i < compSize ; i++) {
         compChildren[i].getElementsByTagName('input')[0].name = 'component' + i;
@@ -86,7 +86,27 @@ function loadClassesToSelect() {
                     document.getElementById('selectclassselect').add(opt);
                     //$('<option>').val(json[i].className).text(json[i].className).appendTo('#selectclassselect');
                 }
-                $('#selectclassselect').selectmenu('refresh', true );
+                $('#selectclassselect').selectmenu('refresh', true);
+            }
+        }
+    }
+
+    xhttp.open('GET', 'getClasses.php', true);
+    xhttp.send();
+}
+
+function loadClassInfo() {
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            var json = JSON.parse(xhttp.responseText);
+            for (var i = 0; i < json.length; i++) {
+                if (json[i].className == document.getElementById('selectclassselect').value) {
+                    document.getElementById('editclass').style.display = 'block';
+                    document.getElementById('selectclassname').value = json[i].className;
+                    break;
+                }
             }
         }
     }
