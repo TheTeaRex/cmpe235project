@@ -229,16 +229,60 @@ function submitForm(obj) {
     return false;
 }
 
-function previewgrades() {
+function previewgrades(alertOn) {
+    $('#amin').removeClass('invalid');
+    $('#bmin').removeClass('invalid');
+    $('#cmin').removeClass('invalid');
+    $('#dmin').removeClass('invalid');
     var amin = document.getElementById('amin').value.trim()
     var bmin = document.getElementById('bmin').value.trim()
     var cmin = document.getElementById('cmin').value.trim()
     var dmin = document.getElementById('dmin').value.trim()
-    if (isNaN(amin) ||
-        isNaN(bmin) ||
-        isNaN(cmin) ||
-        isNaN(dmin) ) {
+
+    var intError = false;
+    if (isNaN(amin)) {
+        $('#amin').addClass('invalid');
+        intError = true;
+    }
+    if (isNaN(bmin)) {
+        $('#bmin').addClass('invalid');
+        intError = true;
+    }
+    if (isNaN(cmin)) {
+        $('#cmin').addClass('invalid');
+        intError = true;
+    }
+    if (isNaN(dmin)) {
+        $('#dmin').addClass('invalid');
+        intError = true;
+    }
+    if (intError) {
+        if (alertOn)
             alert('Please make sure all inputs are integers');
+        return false;
+    }
+
+    var emptyError = false;
+    if (amin == '') {
+        $('#amin').addClass('invalid');
+        emptyError = true;
+    }
+    if (bmin == '') {
+        $('#bmin').addClass('invalid');
+        emptyError = true;
+    }
+    if (cmin == '') {
+        $('#cmin').addClass('invalid');
+        emptyError = true;
+    }
+    if (dmin == '') {
+        $('#dmin').addClass('invalid');
+        emptyError = true;
+    }
+    if (emptyError) {
+        if (alertOn)
+            alert('Please make sure all the fields have inputs');
+        return false;
     }
 
     amin = parseInt(amin);
@@ -247,14 +291,33 @@ function previewgrades() {
     dmin = parseInt(dmin);
     var alertstr = '';
 
-    if (amin <= bmin) alertstr += 'A Min needs to be larger than B Min.\n';
-    if (bmin <= cmin) alertstr += 'B Min needs to be larger than C Min.\n';
-    if (cmin <= dmin) alertstr += 'C Min needs to be larger than D Min.\n';
-    if (amin >= 100) alertstr += 'A Min needs to be smaller than 100.\n';
-    if (dmin <= 0) alertstr += 'D Min needs to be larger than 0.\n';
+    if (amin <= bmin) {
+        alertstr += 'A Min needs to be larger than B Min.\n';
+        $('#amin').addClass('invalid');
+        $('#bmin').addClass('invalid');
+    }
+    if (bmin <= cmin) {
+        alertstr += 'B Min needs to be larger than C Min.\n';
+        $('#bmin').addClass('invalid');
+        $('#cmin').addClass('invalid');
+    }
+    if (cmin <= dmin) {
+        alertstr += 'C Min needs to be larger than D Min.\n';
+        $('#cmin').addClass('invalid');
+        $('#dmin').addClass('invalid');
+    }
+    if (amin >= 100) {
+        alertstr += 'A Min needs to be smaller than 100.\n';
+        $('#amin').addClass('invalid');
+    }
+    if (dmin <= 0) {
+        alertstr += 'D Min needs to be larger than 0.\n';
+        $('#dmin').addClass('invalid');
+    }
 
     if (alertstr != '') {
-        alert(alertstr);
+        if (alertOn)
+            alert(alertstr);
         return false;
     }
 
