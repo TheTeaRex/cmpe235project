@@ -18,11 +18,13 @@
       <div data-role='content'>
         <a href='#addaclass' data-transition='pop' class='ui-btn ui-shadow ui-corner-all'>Add a Class</a>
         <a href='#selectaclass' data-transition='pop' class='ui-btn ui-shadow ui-corner-all'>Edit a Class</a>
+        <a href='#gradescutoff' data-transition='pop' class='ui-btn ui-shadow ui-corner-all'>Setting for Grade Cut Off</a>
         <a href='#editstudentscore' data-transition='pop' class='ui-btn ui-shadow ui-corner-all'>Edit a Student's Score</a>
       </div>
 
     </div>
     <!-- end of the menu -->
+
 
     <!-- add a class -->
     <div data-role='page' id='addaclass'>
@@ -66,7 +68,7 @@
     <div data-role='page' id='selectaclass'>
       <div data-role='header'>
         <a href='#menu' data-transition='slide' data-icon='back'>Back</a>
-        <h1>Select a Class</h1>
+        <h1>Select a Class to Edit</h1>
       </div>
 
       <div data-role='content'>
@@ -122,7 +124,93 @@
         </div>
       </div>
     </div>
-    <!-- end of the add a class -->
+    <!-- end of the select a class -->
+
+
+    <!-- setting grade cutoff -->
+    <div data-role='page' id='gradescutoff'>
+      <div data-role='header'>
+        <a href='#menu' data-transition='slide' data-icon='back'>Back</a>
+        <h1>Grades Cutoff</h1>
+      </div>
+
+      <div data-role='content'>
+        <!-- if there a class to select -->
+        <div name='selectclassdiv1' id='selectclassdiv1' align='center' style='display:none'>
+          <form name='setgrade_form' id='setgrade_form' method ='post' action='saveGrades_confirmation.php'>
+            <div align='center'>
+              <b>Select a Class</b>
+              <select name='gradesclassselect' id='gradesclassselect' data-native-menu='false' onChange='loadClassGrade()'>
+                <option value="choose_one" data-placeholder="true">Choose one...</option>
+              </select>
+            </div>
+            <div name='editclassgrades' id='editclassgrades' style='display:none'>
+              <div class='ui-grid-b'>
+                <div class='ui-block-a' align='center'><b>Min</b></div>
+                <div class='ui-block-b' align='center'><b>Max</b></div>
+                <div class='ui-block-c' align='center'><b>Grade</b></div>
+              </div>
+              <div id='adiv'>
+                <div class='ui-grid-b'>
+                  <div class='ui-block-a'><input type='text' style='text-align:center' name='amin' id='amin'></div>
+                  <div class='ui-block-b'><input type='text' style='text-align:center' name='amax' id='amax' disabled></div>
+                  <div class='ui-block-c'><input type='text' style='text-align:center' value='A' disabled></div>
+                </div>
+              </div>
+              <div id='bdiv'>
+                <div class='ui-grid-b'>
+                  <div class='ui-block-a'><input type='text' style='text-align:center' name='bmin' id='bmin'></div>
+                  <div class='ui-block-b'><input type='text' style='text-align:center' name='bmax' id='bmax' disabled></div>
+                  <div class='ui-block-c'><input type='text' style='text-align:center' value='B' disabled></div>
+                </div>
+              </div>
+              <div id='cdiv'>
+                <div class='ui-grid-b'>
+                  <div class='ui-block-a'><input type='text' style='text-align:center' name='cmin' id='cmin'></div>
+                  <div class='ui-block-b'><input type='text' style='text-align:center' name='cmax' id='cmax' disabled></div>
+                  <div class='ui-block-c'><input type='text' style='text-align:center' value='C' disabled></div>
+                </div>
+              </div>
+              <div id='ddiv'>
+                <div class='ui-grid-b'>
+                  <div class='ui-block-a'><input type='text' style='text-align:center' name='dmin' id='dmin'></div>
+                  <div class='ui-block-b'><input type='text' style='text-align:center' name='dmax' id='dmax' disabled></div>
+                  <div class='ui-block-c'><input type='text' style='text-align:center' value='D' disabled></div>
+                </div>
+              </div>
+              <div id='fdiv'>
+                <div class='ui-grid-b'>
+                  <div class='ui-block-a'><input type='text' style='text-align:center' name='fmin' id='fmin' disabled></div>
+                  <div class='ui-block-b'><input type='text' style='text-align:center' name='fmax' id='fmax' disabled></div>
+                  <div class='ui-block-c'><input type='text' style='text-align:center' value='F' disabled></div>
+                </div>
+              </div>
+              <br>
+
+              <div>
+                <a href='#' onClick='previewgrades()' class='ui-btn ui-shadow ui-corner-all'>Let's Preview the Grades Configuration</a>
+              </div>
+              <div>
+                <a href='#' onClick='setDefaultGrades()' class='ui-btn ui-shadow ui-corner-all'>Default Configuration</a>
+              </div>
+              <input type='submit' class='ui-btn ui-btn-b ui-shadow ui-corner-all' onClick='return previewgrades()' value='Save'>
+            </div>
+          </form>
+        </div>
+
+        <!-- no class to show -->
+        <div name='noclassdiv1' id='noclassdiv1' align='center' style='display:block'>
+          <p><b>
+            Currently there isn't a class in the database
+            <br>
+            Please add one and come back!
+          </b></p>
+        </div>
+      </div>
+    </div>
+    <!-- end of the setting grade cutoff -->
+
+
   </body>
 </html>
 

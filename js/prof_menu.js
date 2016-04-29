@@ -95,6 +95,33 @@ function loadClassesToSelect() {
     xhttp.send();
 }
 
+function loadClassesToSelectGrade() {
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            var json = JSON.parse(xhttp.responseText);
+            if (json.length == 0) {
+                document.getElementById('selectclassdiv1').style.display = 'none';
+                document.getElementById('noclassdiv1').style.display = 'block';
+            } else {
+                document.getElementById('selectclassdiv1').style.display = 'block';
+                document.getElementById('noclassdiv1').style.display = 'none';
+                for (var i = 0; i < json.length; i++) {
+                    var opt = document.createElement('option');
+                    opt.text = json[i].className;
+                    document.getElementById('gradesclassselect').add(opt);
+                    //$('<option>').val(json[i].className).text(json[i].className).appendTo('#selectclassselect');
+                }
+                $('#gradesclassselect').selectmenu('refresh', true);
+            }
+        }
+    }
+
+    xhttp.open('GET', 'getClasses.php', true);
+    xhttp.send();
+}
+
 function loadClassInfo() {
     var maxComp = 10;
     var xhttp = new XMLHttpRequest();
@@ -146,9 +173,44 @@ function loadClassInfo() {
     xhttp.send();
 }
 
+function loadClassGrade() {
+    var xhttp = new XMLHttpRequest();
+    var max = 100;
+    var min = 0;
+
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            var json = JSON.parse(xhttp.responseText);
+
+            for (var i = 0; i < json.length; i++) {
+                if (json[i].className == document.getElementById('gradesclassselect').value) {
+                    document.getElementById('editclassgrades').style.display = 'block';
+                    document.getElementById('amax').value = max;
+                    document.getElementById('amin').value = json[i].A;
+                    document.getElementById('bmax').value = json[i].A - 1;
+                    document.getElementById('bmin').value = json[i].B;
+                    document.getElementById('cmax').value = json[i].B - 1;
+                    document.getElementById('cmin').value = json[i].C;
+                    document.getElementById('dmax').value = json[i].C - 1;
+                    document.getElementById('dmin').value = json[i].D;
+                    document.getElementById('fmax').value = json[i].D - 1;
+                    document.getElementById('fmin').value = min;
+                    break;
+                }
+            }
+        }
+    }
+
+    xhttp.open('GET', 'getClasses.php', true);
+    xhttp.send();
+}
+
 // load the classes when going to the selectclass id
-$(document).on('pagebeforeshow', '#selectaclass', function(){
+$(document).on('pageinit', '#selectaclass', function(){
     loadClassesToSelect();
+});
+$(document).on('pageinit', '#gradescutoff', function(){
+    loadClassesToSelectGrade();
 });
 
 function deleteClass() {
@@ -165,4 +227,46 @@ function submitForm(obj) {
         return deleteClass();
     }
     return false;
+}
+
+function previewgrades() {
+    var amin = document.getElementById('amin').value.trim()
+    var bmin = document.getElementById('bmin').value.trim()
+    var cmin = document.getElementById('cmin').value.trim()
+    var dmin = document.getElementById('dmin').value.trim()
+    if (isNaN(amin) ||
+        isNaN(bmin) ||
+        isNaN(cmin) ||
+        isNaN(dmin) ) {
+            alert('Please make sure all inputs are integers');
+    }
+
+    amin = parseInt(amin);
+    bmin = parseInt(bmin);
+    cmin = parseInt(cmin);
+    dmin = parseInt(dmin);
+    var alertstr = '';
+
+    if (amin <= bmin) alertstr += 'A Min needs to be larger than B Min.\n';
+    if (bmin <= cmin) alertstr += 'B Min needs to be larger than C Min.\n';
+    if (cmin <= dmin) alertstr += 'C Min needs to be larger than D Min.\n';
+    if (amin >= 100) alertstr += 'A Min needs to be smaller than 100.\n';
+    if (dmin <= 0) alertstr += 'D Min needs to be larger than 0.\n';
+
+    if (alertstr != '') {
+        alert(alertstr);
+        return false;
+    }
+
+    document.getElementById('bmax').value = amin - 1;
+    document.getElementById('cmax').value = bmin - 1;
+    document.getElementById('dmax').value = cmin - 1;
+    document.getElementById('fmax').value = dmin - 1;
+}
+
+function setDefaultGrades(){
+    document.getElementById('amin').value = 90;
+    document.getElementById('bmin').value = 80;
+    document.getElementById('cmin').value = 70;
+    document.getElementById('dmin').value = 60;
 }

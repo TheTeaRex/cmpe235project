@@ -17,6 +17,14 @@
     // create connection
     $conn = new mysqli($server, $username, $password, $database);
 
+    // check connection
+    if ($conn->connect_error) {
+      echo '<script>';
+      echo "alert('Not able to connect to the database at the moment, please try again later.')";
+      echo '</script>';
+      die('Connection failed: '.$conn->connect_error);
+    }
+
     $action = $_POST['action'];
 
     if ($action == 'Delete Class') {
@@ -76,14 +84,6 @@
         echo "document.location.href = 'prof_menu.php';";
         echo '</script>';
       }
-    }
-
-    // check connection
-    if ($conn->connect_error) {
-      echo '<script>';
-      echo "alert('Not able to connect to the database at the moment, please try again later.')";
-      echo '</script>';
-      die('Connection failed: '.$conn->connect_error);
     }
 
     $conn->close();
