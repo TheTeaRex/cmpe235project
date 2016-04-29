@@ -18,7 +18,7 @@ function rmComponent(obj) {
     obj.parentElement.parentElement.parentElement.removeChild(obj.parentElement.parentElement);
 }
 
-function formValidation(classinput, componentinput, sizeinput, isDelete=false) {
+function formValidation(classinput, componentinput, sizeinput) {
     setCorrectName(componentinput);
     // checking if the classname is provided
     if(document.getElementById(classinput).value.trim() == '' ) {
@@ -154,4 +154,15 @@ $(document).on('pagebeforeshow', '#selectaclass', function(){
 function deleteClass() {
     var classname = document.getElementById('selectclassname').value;
     return confirm('Are you sure you want to delete ' + classname + '?');
+}
+
+function submitForm(obj) {
+    if (obj.value == 'Create Class') {
+        return formValidation("classname", "components", "compSize")
+    } else if (obj.value == 'Submit') {
+        return formValidation("selectclassname", "editComponents", "selectcompSize")
+    } else if (obj.value == 'Delete Class') {
+        return deleteClass();
+    }
+    return false;
 }
