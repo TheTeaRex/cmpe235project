@@ -152,28 +152,28 @@
               </div>
               <div id='adiv'>
                 <div class='ui-grid-b'>
-                  <div class='ui-block-a'><input type='text' style='text-align:center' name='amin' id='amin'></div>
+                  <div class='ui-block-a'><input type='text' style='text-align:center' name='amin' id='amin' onChange='previewgrades(false)'></div>
                   <div class='ui-block-b'><input type='text' style='text-align:center' name='amax' id='amax' disabled></div>
                   <div class='ui-block-c'><input type='text' style='text-align:center' value='A' disabled></div>
                 </div>
               </div>
               <div id='bdiv'>
                 <div class='ui-grid-b'>
-                  <div class='ui-block-a'><input type='text' style='text-align:center' name='bmin' id='bmin'></div>
+                  <div class='ui-block-a'><input type='text' style='text-align:center' name='bmin' id='bmin' onChange='previewgrades(false)'></div>
                   <div class='ui-block-b'><input type='text' style='text-align:center' name='bmax' id='bmax' disabled></div>
                   <div class='ui-block-c'><input type='text' style='text-align:center' value='B' disabled></div>
                 </div>
               </div>
               <div id='cdiv'>
                 <div class='ui-grid-b'>
-                  <div class='ui-block-a'><input type='text' style='text-align:center' name='cmin' id='cmin'></div>
+                  <div class='ui-block-a'><input type='text' style='text-align:center' name='cmin' id='cmin' onChange='previewgrades(false)'></div>
                   <div class='ui-block-b'><input type='text' style='text-align:center' name='cmax' id='cmax' disabled></div>
                   <div class='ui-block-c'><input type='text' style='text-align:center' value='C' disabled></div>
                 </div>
               </div>
               <div id='ddiv'>
                 <div class='ui-grid-b'>
-                  <div class='ui-block-a'><input type='text' style='text-align:center' name='dmin' id='dmin'></div>
+                  <div class='ui-block-a'><input type='text' style='text-align:center' name='dmin' id='dmin' onChange='previewgrades(false)'></div>
                   <div class='ui-block-b'><input type='text' style='text-align:center' name='dmax' id='dmax' disabled></div>
                   <div class='ui-block-c'><input type='text' style='text-align:center' value='D' disabled></div>
                 </div>
@@ -188,12 +188,9 @@
               <br>
 
               <div>
-                <a href='#' onClick='previewgrades()' class='ui-btn ui-shadow ui-corner-all'>Let's Preview the Grades Configuration</a>
-              </div>
-              <div>
                 <a href='#' onClick='setDefaultGrades()' class='ui-btn ui-shadow ui-corner-all'>Default Configuration</a>
               </div>
-              <input type='submit' class='ui-btn ui-btn-b ui-shadow ui-corner-all' onClick='return previewgrades()' value='Save'>
+              <input type='submit' class='ui-btn ui-btn-b ui-shadow ui-corner-all' onClick='return previewgrades(true)' value='Save'>
             </div>
           </form>
         </div>
