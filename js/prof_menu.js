@@ -251,6 +251,10 @@ function loadClassConfigForSample() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             var json = JSON.parse(xhttp.responseText);
 
+            while (document.getElementById('samplegrades').children.length > 1) {
+               document.getElementById('samplegrades').removeChild(document.getElementById('samplegrades').children[1]);
+            }
+
             for (var i = 0; i < json.length; i++) {
                 if (json[i].className == document.getElementById('studentclassselect').value) {
                     document.getElementById('samplegrades').style.display = 'block';
@@ -408,6 +412,10 @@ function previewgrades(alertOn) {
 }
 
 function setDefaultGrades(){
+    $('#amin').removeClass('invalid');
+    $('#bmin').removeClass('invalid');
+    $('#cmin').removeClass('invalid');
+    $('#dmin').removeClass('invalid');
     document.getElementById('amin').value = 90;
     document.getElementById('bmin').value = 80;
     document.getElementById('cmin').value = 70;
