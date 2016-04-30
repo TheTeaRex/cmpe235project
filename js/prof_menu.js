@@ -122,6 +122,33 @@ function loadClassesToSelectGrade() {
     xhttp.send();
 }
 
+function loadClassesToSetGrade() {
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            var json = JSON.parse(xhttp.responseText);
+            if (json.length == 0) {
+                document.getElementById('selectclassdiv2').style.display = 'none';
+                document.getElementById('noclassdiv2').style.display = 'block';
+            } else {
+                document.getElementById('selectclassdiv2').style.display = 'block';
+                document.getElementById('noclassdiv2').style.display = 'none';
+                for (var i = 0; i < json.length; i++) {
+                    var opt = document.createElement('option');
+                    opt.text = json[i].className;
+                    document.getElementById('studentclassselect').add(opt);
+                    //$('<option>').val(json[i].className).text(json[i].className).appendTo('#selectclassselect');
+                }
+                $('#studentclassselect').selectmenu('refresh', true);
+            }
+        }
+    }
+
+    xhttp.open('GET', 'getClasses.php', true);
+    xhttp.send();
+}
+
 function loadClassInfo() {
     var maxComp = 10;
     var xhttp = new XMLHttpRequest();
@@ -205,12 +232,65 @@ function loadClassGrade() {
     xhttp.send();
 }
 
+function loadClassConfigForSample() {
+    var xhttp = new XMLHttpRequest();
+    var maxComp = 10;
+
+    var str = "<div><b>{itemstr}:</b><b style='float:right' name='{perstr}' id='{perstr}'></b></div>";
+    str += "<input type='range' name='{namestr}' id='{namestr}' min='0' max='{max}' value='{value}' onChange='updateGrade()'/>";
+
+    var str1 = "<input type='hidden' name='studentacutoff' id='studentacutoff'>"
+    str1 += "<input type='hidden' name='studentbcutoff' id='studentbcutoff'>"
+    str1 += "<input type='hidden' name='studentccutoff' id='studentccutoff'>"
+    str1 += "<input type='hidden' name='studentdcutoff' id='studentdcutoff'>"
+    str1 += "<input type='hidden' name='studentcompsize' id='studentcompsize'>"
+    str1 += "<br><div><b name='currentscore' id='currentscore'>Student's Final Score: TBD</b></div>"
+    str1 += "<br><div><b name='currentgrade' id='currentgrade'>Student's Final Grade: TBD</b></div>"
+
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            var json = JSON.parse(xhttp.responseText);
+
+            for (var i = 0; i < json.length; i++) {
+                if (json[i].className == document.getElementById('studentclassselect').value) {
+                    document.getElementById('samplegrades').style.display = 'block';
+                    for (var j = 0; j < maxComp; j++) {
+                        var itemstr = json[i]['comp' + j];
+                        var namestr = 'item' + j;
+                        var point = 'mpoint' + j;
+                        var per = 'itemper' + j;
+                        if (itemstr ==  null) break;
+                        var tempstr = str.replace(/{itemstr}/g, itemstr).replace(/{namestr}/g, namestr);
+                        tempstr = tempstr.replace('{max}', json[i][point]).replace('{value}', json[i][point]/2);
+                        tempstr = tempstr.replace(/{perstr}/g, per);
+                        $('#samplegrades').append(tempstr).trigger('create');
+                        document.getElementById(per).innerHTML = json[i]['percentage' + j] + ' %';
+                    }
+                    $('#samplegrades').append(str1).trigger('create');
+                    document.getElementById('studentacutoff').value = json[i].A;
+                    document.getElementById('studentbcutoff').value = json[i].B;
+                    document.getElementById('studentccutoff').value = json[i].C;
+                    document.getElementById('studentdcutoff').value = json[i].D;
+                    document.getElementById('studentcompsize').value = j;
+                    break;
+                }
+            }
+        }
+    }
+
+    xhttp.open('GET', 'getClasses.php', true);
+    xhttp.send();
+}
+
 // load the classes when going to the selectclass id
 $(document).on('pageinit', '#selectaclass', function(){
     loadClassesToSelect();
 });
 $(document).on('pageinit', '#gradescutoff', function(){
     loadClassesToSelectGrade();
+});
+$(document).on('pageinit', '#samplestudentgrade', function(){
+    loadClassesToSetGrade();
 });
 
 function deleteClass() {
@@ -332,4 +412,35 @@ function setDefaultGrades(){
     document.getElementById('bmin').value = 80;
     document.getElementById('cmin').value = 70;
     document.getElementById('dmin').value = 60;
+}
+
+function updateGrade() {
+    var acutoff = parseInt(document.getElementById('studentacutoff').value);
+    var bcutoff = parseInt(document.getElementById('studentbcutoff').value);
+    var ccutoff = parseInt(document.getElementById('studentccutoff').value);
+    var dcutoff = parseInt(document.getElementById('studentdcutoff').value);
+
+    var totalscore = 0;
+    for (var i = 0; i < parseInt(document.getElementById('studentcompsize').value); i++) {
+        item = 'item' + i;
+        per = 'itemper' + i;
+        var score = parseInt(document.getElementById(item).value);
+        score = score / parseInt(document.getElementById(item).max);
+        percentage = document.getElementById(per).innerHTML.replace(' %','');
+        score *=  parseInt(percentage);
+        totalscore += score;
+    }
+
+    document.getElementById('currentscore').innerHTML = "Student's Final Score: " + parseFloat(totalscore).toFixed(1);
+
+    if ( acutoff <= totalscore && totalscore <= 100)
+        document.getElementById('currentgrade').innerHTML = "Student's Final Grade: A";
+    else if ( bcutoff <= totalscore && totalscore < acutoff)
+        document.getElementById('currentgrade').innerHTML = "Student's Final Grade: B";
+    else if ( ccutoff <= totalscore && totalscore < bcutoff)
+        document.getElementById('currentgrade').innerHTML = "Student's Final Grade: C";
+    else if ( dcutoff <= totalscore && totalscore < ccutoff)
+        document.getElementById('currentgrade').innerHTML = "Student's Final Grade: D";
+    else
+        document.getElementById('currentgrade').innerHTML = "Student's Final Grade: F";
 }
