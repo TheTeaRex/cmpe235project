@@ -20,6 +20,7 @@
         <a href='#selectaclass' data-transition='pop' class='ui-btn ui-shadow ui-corner-all'>Edit a Class</a>
         <a href='#gradescutoff' data-transition='pop' class='ui-btn ui-shadow ui-corner-all'>Setting for Grade Cut Off</a>
         <a href='#samplestudentgrade' data-transition='pop' class='ui-btn ui-shadow ui-corner-all'>Sample Student's Grade</a>
+        <a href='http://waynefullstackdeveloper.com/cs50hardvardsyllabus.pdf' data-transition='pop' class='ui-btn ui-shadow ui-corner-all'>Sample Green Sheet</a>
       </div>
 
     </div>
