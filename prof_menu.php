@@ -19,7 +19,7 @@
         <a href='#addaclass' data-transition='pop' class='ui-btn ui-shadow ui-corner-all'>Add a Class</a>
         <a href='#selectaclass' data-transition='pop' class='ui-btn ui-shadow ui-corner-all'>Edit a Class</a>
         <a href='#gradescutoff' data-transition='pop' class='ui-btn ui-shadow ui-corner-all'>Setting for Grade Cut Off</a>
-        <a href='#editstudentscore' data-transition='pop' class='ui-btn ui-shadow ui-corner-all'>Edit a Student's Score</a>
+        <a href='#samplestudentgrade' data-transition='pop' class='ui-btn ui-shadow ui-corner-all'>Sample Student's Grade</a>
       </div>
 
     </div>
@@ -208,6 +208,37 @@
     <!-- end of the setting grade cutoff -->
 
 
+    <!-- sample student grade -->
+    <div data-role='page' id='samplestudentgrade'>
+      <div data-role='header'>
+        <a href='#menu' data-transition='slide' data-icon='back'>Back</a>
+        <h1>Sample Student for Grade</h1>
+      </div>
+
+      <div data-role='content'>
+        <!-- if there a class to select -->
+        <div name='selectclassdiv2' id='selectclassdiv2' style='display:none'>
+          <div>
+            <b>Select a Class</b>
+            <select name='studentclassselect' id='studentclassselect' data-native-menu='false' onChange='loadClassConfigForSample()'>
+              <option value="choose_one" data-placeholder="true">Choose one...</option>
+            </select>
+            <div name='samplegrades' id='samplegrades' style='display:none'>
+            </div>
+          </div>
+        </div>
+
+        <!-- no class to show -->
+        <div name='noclassdiv2' id='noclassdiv2' align='center' style='display:block'>
+          <p><b>
+            Currently there isn't a class in the database
+            <br>
+            Please add one and come back!
+          </b></p>
+        </div>
+      </div>
+    </div>
+    <!-- end of sample student grade -->
   </body>
 </html>
 
