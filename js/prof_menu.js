@@ -439,7 +439,7 @@ function updateGrade() {
         totalscore += score;
     }
 
-    document.getElementById('currentscore').innerHTML = "Student's Final Score: " + parseFloat(totalscore).toFixed(1);
+    document.getElementById('currentscore').innerHTML = "Student's Final Score: " + parseFloat(totalscore).toFixed(1) + "%";
 
     if ( acutoff <= totalscore && totalscore <= 100)
         document.getElementById('currentgrade').innerHTML = "Student's Final Grade: A";
