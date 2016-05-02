@@ -49,8 +49,8 @@
           <div id='components'>
             <div class='ui-grid-c'>
               <div class='ui-block-a main'><input type='text' name='component0' id='component' placeholder='Component'></div>
-              <div class='ui-block-b point'><input type='text' name='point0' id='point' placeholder='Max Point'></div>
-              <div class='ui-block-c per'><input type='text' name='percentage0' id='percentage0' placeholder='Percentage'></div>
+              <div class='ui-block-b point'><input type='number' name='point0' id='point' placeholder='Max Point'></div>
+              <div class='ui-block-c per'><input type='number' name='percentage0' id='percentage0' placeholder='Percentage'></div>
               <div class='ui-block-d rm'><button type='button' class='ui-btn ui-icon-delete ui-shadow ui-corner-all ui-btn-icon-notext' disabled></button></div>
             </div>
           </div>
@@ -96,8 +96,8 @@
               <div id='editComponents'>
                 <div class='ui-grid-c'>
                   <div class='ui-block-a main'><input type='text' name='component0' id='component' placeholder='Component'></div>
-                  <div class='ui-block-b point'><input type='text' name='point0' id='point' placeholder='Max Point'></div>
-                  <div class='ui-block-c per'><input type='text' name='percentage0' id='percentage0' placeholder='Percentage'></div>
+                  <div class='ui-block-b point'><input type='number' name='point0' id='point' placeholder='Max Point'></div>
+                  <div class='ui-block-c per'><input type='number' name='percentage0' id='percentage0' placeholder='Percentage'></div>
                   <div class='ui-block-d rm'><button type='button' class='ui-btn ui-icon-delete ui-shadow ui-corner-all ui-btn-icon-notext' disabled></button></div>
                 </div>
               </div>
@@ -154,36 +154,36 @@
               </div>
               <div id='adiv'>
                 <div class='ui-grid-b'>
-                  <div class='ui-block-a'><input type='text' style='text-align:center' name='amin' id='amin' onChange='previewgrades(false)'></div>
-                  <div class='ui-block-b'><input type='text' style='text-align:center' name='amax' id='amax' disabled></div>
+                  <div class='ui-block-a'><input type='number' style='text-align:center' name='amin' id='amin' onChange='previewgrades(false)'></div>
+                  <div class='ui-block-b'><input type='number' style='text-align:center' name='amax' id='amax' disabled></div>
                   <div class='ui-block-c'><input type='text' style='text-align:center' value='A' disabled></div>
                 </div>
               </div>
               <div id='bdiv'>
                 <div class='ui-grid-b'>
-                  <div class='ui-block-a'><input type='text' style='text-align:center' name='bmin' id='bmin' onChange='previewgrades(false)'></div>
-                  <div class='ui-block-b'><input type='text' style='text-align:center' name='bmax' id='bmax' disabled></div>
+                  <div class='ui-block-a'><input type='number' style='text-align:center' name='bmin' id='bmin' onChange='previewgrades(false)'></div>
+                  <div class='ui-block-b'><input type='number' style='text-align:center' name='bmax' id='bmax' disabled></div>
                   <div class='ui-block-c'><input type='text' style='text-align:center' value='B' disabled></div>
                 </div>
               </div>
               <div id='cdiv'>
                 <div class='ui-grid-b'>
-                  <div class='ui-block-a'><input type='text' style='text-align:center' name='cmin' id='cmin' onChange='previewgrades(false)'></div>
-                  <div class='ui-block-b'><input type='text' style='text-align:center' name='cmax' id='cmax' disabled></div>
+                  <div class='ui-block-a'><input type='number' style='text-align:center' name='cmin' id='cmin' onChange='previewgrades(false)'></div>
+                  <div class='ui-block-b'><input type='number' style='text-align:center' name='cmax' id='cmax' disabled></div>
                   <div class='ui-block-c'><input type='text' style='text-align:center' value='C' disabled></div>
                 </div>
               </div>
               <div id='ddiv'>
                 <div class='ui-grid-b'>
-                  <div class='ui-block-a'><input type='text' style='text-align:center' name='dmin' id='dmin' onChange='previewgrades(false)'></div>
-                  <div class='ui-block-b'><input type='text' style='text-align:center' name='dmax' id='dmax' disabled></div>
+                  <div class='ui-block-a'><input type='number' style='text-align:center' name='dmin' id='dmin' onChange='previewgrades(false)'></div>
+                  <div class='ui-block-b'><input type='number' style='text-align:center' name='dmax' id='dmax' disabled></div>
                   <div class='ui-block-c'><input type='text' style='text-align:center' value='D' disabled></div>
                 </div>
               </div>
               <div id='fdiv'>
                 <div class='ui-grid-b'>
-                  <div class='ui-block-a'><input type='text' style='text-align:center' name='fmin' id='fmin' disabled></div>
-                  <div class='ui-block-b'><input type='text' style='text-align:center' name='fmax' id='fmax' disabled></div>
+                  <div class='ui-block-a'><input type='number' style='text-align:center' name='fmin' id='fmin' disabled></div>
+                  <div class='ui-block-b'><input type='number' style='text-align:center' name='fmax' id='fmax' disabled></div>
                   <div class='ui-block-c'><input type='text' style='text-align:center' value='F' disabled></div>
                 </div>
               </div>

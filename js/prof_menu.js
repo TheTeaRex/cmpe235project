@@ -7,8 +7,8 @@ function addComponent(idInput) {
     }
     var str = "<div class='ui-grid-c'>";
     str += "<div class='ui-block-a main'><input type='text' name='component' id='component' placeholder='Component'></div>";
-    str += "<div class='ui-block-b point'><input type='text' name='point' id='point' placeholder='Max Point'></div>";
-    str += "<div class='ui-block-c per'><input type='text' name='percentage' id='percentage' placeholder='Percentage'></div>";
+    str += "<div class='ui-block-b point'><input type='number' name='point' id='point' placeholder='Max Point'></div>";
+    str += "<div class='ui-block-c per'><input type='number' name='percentage' id='percentage' placeholder='Percentage'></div>";
     str += "<div class='ui-block-d rm'><button type='button' onClick='rmComponent(this)' class='ui-btn ui-icon-delete ui-shadow ui-corner-all ui-btn-icon-notext'></button></div>";
     str += "</div>";
     $(components).append(str).trigger('create');
@@ -178,8 +178,8 @@ function loadClassInfo() {
 
                         var str = "<div class='ui-grid-c'>";
                         str += "<div class='ui-block-a main'><input type='text' name='component' id='component' placeholder='Component'></div>";
-                        str += "<div class='ui-block-b point'><input type='text' name='point' id='point' placeholder='Max Point'></div>";
-                        str += "<div class='ui-block-c per'><input type='text' name='percentage' id='percentage' placeholder='Percentage'></div>";
+                        str += "<div class='ui-block-b point'><input type='number' name='point' id='point' placeholder='Max Point'></div>";
+                        str += "<div class='ui-block-c per'><input type='number' name='percentage' id='percentage' placeholder='Percentage'></div>";
                         str += "<div class='ui-block-d rm'><button type='button' onClick='rmComponent(this)' class='ui-btn ui-icon-delete ui-shadow ui-corner-all ui-btn-icon-notext'></button></div>";
                         str += "</div>";
                         $('#editComponents').append(str).trigger('create');
