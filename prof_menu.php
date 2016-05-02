@@ -21,7 +21,7 @@
         <a href='#gradescutoff' data-transition='pop' class='ui-btn ui-shadow ui-corner-all'>Setting for Grade Cut Off</a>
         <a href='#samplestudentgrade' data-transition='pop' class='ui-btn ui-shadow ui-corner-all'>Sample Student's Grade</a>
         <a href='http://waynefullstackdeveloper.com/cs50hardvardsyllabus.pdf' data-transition='pop' class='ui-btn ui-shadow ui-corner-all'>Sample Green Sheet</a>
-        <a href='http://thenergal.com/202project/samplestudent.html' data-transition='pop' class='ui-btn ui-shadow ui-corner-all'>Sample Student's Information</a>
+        <a href='http://thenergal.com/202project/samplestudentVertical.html' data-transition='pop' class='ui-btn ui-shadow ui-corner-all'>Sample Student's Information</a>
       </div>
 
     </div>
