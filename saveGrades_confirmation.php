@@ -61,6 +61,6 @@
       }
 
     ?>
-    <a href='#' onClick='linkTo()' data-transition='pop' class='ui-btn ui-shadow ui-corner-all'>Go Back</a>
+    <a href='#' onClick='linkTo()' data-transition='pop' class='ui-btn ui-shadow ui-corner-all'>Back to the Main Page</a>
   </body>
 </html>
