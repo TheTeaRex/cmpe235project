@@ -71,6 +71,7 @@ $(document).ready( function(){
                     var result = $.parseJSON(data);
                     if (result.status == 'success') {
                         alert('Entry has been added successfully');
+                        document.location.href = 'prof_menu.html';
                     } else if (result.status == 'dup') {
                         alert('Entry cannot be added due to duplication');
                     } else {
