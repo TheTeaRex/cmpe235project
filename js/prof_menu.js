@@ -52,7 +52,39 @@ function formValidation(classinput, componentinput, sizeinput) {
     // it is ready to be sent to the back end
     document.getElementById(classinput).value = document.getElementById(classinput).value.toUpperCase();
     document.getElementById(sizeinput).value = compSize;
+
+    return true;
 }
+
+$(document).ready( function(){
+    $('#addclass_form').submit( function(event) {
+        if ( !formValidation('classname', 'components', 'compSize')) {
+            event.preventDefault();
+        } else {
+            event.preventDefault();
+            var datastr = $('#addclass_form').serialize();
+            $.ajax({
+                type: 'POST',
+                url: 'http://tearexprojects.com/project/addclass_confirmation.php',
+                data: datastr,
+                success: function(data) {
+                    var result = $.parseJSON(data);
+                    if (result.status == 'success') {
+                        alert('Entry has been added successfully');
+                    } else if (result.status == 'dup') {
+                        alert('Entry cannot be added due to duplication');
+                    } else {
+                        alert('Uhoh! We hit and error and cannot add the entry');
+                    }
+                    console.log(result);
+                },
+                error: function() {
+                    alert('php error');
+                }
+            });
+        }
+    });
+});
 
 function setCorrectName(input) {
     var compChildren = document.getElementById(input).children;
@@ -91,7 +123,7 @@ function loadClassesToSelect() {
         }
     }
 
-    xhttp.open('GET', 'getClasses.php', true);
+    xhttp.open('GET', 'http://tearexprojects.com/project/getClasses.php', true);
     xhttp.send();
 }
 
@@ -118,7 +150,7 @@ function loadClassesToSelectGrade() {
         }
     }
 
-    xhttp.open('GET', 'getClasses.php', true);
+    xhttp.open('GET', 'http://tearexprojects.com/project/getClasses.php', true);
     xhttp.send();
 }
 
@@ -145,7 +177,7 @@ function loadClassesToSetGrade() {
         }
     }
 
-    xhttp.open('GET', 'getClasses.php', true);
+    xhttp.open('GET', 'http://tearexprojects.com/project/getClasses.php', true);
     xhttp.send();
 }
 
@@ -196,7 +228,7 @@ function loadClassInfo() {
         }
     }
 
-    xhttp.open('GET', 'getClasses.php', true);
+    xhttp.open('GET', 'http://tearexprojects.com/project/getClasses.php', true);
     xhttp.send();
 }
 
@@ -228,7 +260,7 @@ function loadClassGrade() {
         }
     }
 
-    xhttp.open('GET', 'getClasses.php', true);
+    xhttp.open('GET', 'http://tearexprojects.com/project/getClasses.php', true);
     xhttp.send();
 }
 
@@ -282,7 +314,7 @@ function loadClassConfigForSample() {
         }
     }
 
-    xhttp.open('GET', 'getClasses.php', true);
+    xhttp.open('GET', 'http://tearexprojects.com/project/getClasses.php', true);
     xhttp.send();
 }
 
