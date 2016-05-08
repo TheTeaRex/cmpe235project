@@ -139,7 +139,7 @@
       <div data-role='content'>
         <!-- if there a class to select -->
         <div name='selectclassdiv1' id='selectclassdiv1' align='center' style='display:none'>
-          <form name='setgrade_form' id='setgrade_form' method ='post' action='saveGrades_confirmation.php'>
+          <form id='setgrade_form'>
             <div align='center'>
               <b>Select a Class</b>
               <select name='gradesclassselect' id='gradesclassselect' data-native-menu='false' onChange='loadClassGrade()'>
@@ -192,7 +192,7 @@
               <div>
                 <a href='#' onClick='setDefaultGrades()' class='ui-btn ui-shadow ui-corner-all'>Default Configuration</a>
               </div>
-              <input type='submit' class='ui-btn ui-btn-b ui-shadow ui-corner-all' onClick='return previewgrades(true)' value='Save'>
+              <input type='submit' class='ui-btn ui-btn-b ui-shadow ui-corner-all' value='Save'>
             </div>
           </form>
         </div>

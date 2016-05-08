@@ -85,6 +85,34 @@ $(document).ready( function(){
             });
         }
     });
+
+    $('#setgrade_form').submit (function(event) {
+        if ( !previewgrades(true)) {
+            event.preventDefault();
+        } else {
+            event.preventDefault();
+            var datastr = $('#setgrade_form').serialize();
+            console.log(datastr);
+            $.ajax({
+                type: 'POST',
+                url: 'http://tearexprojects.com/project/saveGrades_confirmation.php',
+                data: datastr,
+                success: function(data) {
+                    var result = $.parseJSON(data);
+                    if (result.status == 'success') {
+                        alert('Entry has been updated successfully');
+                        document.location.href = 'prof_menu.html';
+                    } else {
+                        alert('Uhoh! We hit and error and cannot update the entry');
+                    }
+                    console.log(result);
+                },
+                error: function() {
+                    alert('php error');
+                }
+            });
+        }
+    });
 });
 
 function setCorrectName(input) {
@@ -442,6 +470,8 @@ function previewgrades(alertOn) {
     document.getElementById('cmax').value = bmin - 1;
     document.getElementById('dmax').value = cmin - 1;
     document.getElementById('fmax').value = dmin - 1;
+
+    return true;
 }
 
 function setDefaultGrades(){
