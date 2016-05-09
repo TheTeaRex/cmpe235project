@@ -63,6 +63,7 @@ $(document).ready( function(){
         } else {
             event.preventDefault();
             var datastr = $('#addclass_form').serialize();
+            console.log(datastr);
             $.ajax({
                 type: 'POST',
                 url: 'http://tearexprojects.com/project/addclass_confirmation.php',
@@ -76,6 +77,58 @@ $(document).ready( function(){
                         alert('Entry cannot be added due to duplication');
                     } else {
                         alert('Uhoh! We hit and error and cannot add the entry');
+                    }
+                    console.log(result);
+                },
+                error: function() {
+                    alert('php error');
+                }
+            });
+        }
+    });
+
+    $('#deleteClass').click (function(event) {
+        var datastr = $('#selectclass_form').serialize() + '&action=Delete+Class';
+        console.log(datastr);
+        event.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: 'http://tearexprojects.com/project/updateClass_confirmation.php',
+            data: datastr,
+            success: function(data) {
+                var result = $.parseJSON(data);
+                if (result.status == 'success') {
+                    alert('Entry has been deleted');
+                    document.location.href = 'prof_menu.html';
+                } else {
+                    alert('Uhoh! We hit and error and cannot delete the entry');
+                }
+                console.log(result);
+            },
+            error: function() {
+                alert('php error');
+            }
+        });
+    });
+
+    $('#updateClass').click (function(event) {
+        if (!formValidation("selectclassname", "editComponents", "selectcompSize")) {
+            event.preventDefault();
+        } else {
+            var datastr = $('#selectclass_form').serialize() + '&action=Submit';
+            console.log(datastr);
+            event.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: 'http://tearexprojects.com/project/updateClass_confirmation.php',
+                data: datastr,
+                success: function(data) {
+                    var result = $.parseJSON(data);
+                    if (result.status == 'success') {
+                        alert('Entry has been updated');
+                        document.location.href = 'prof_menu.html';
+                    } else {
+                        alert('Uhoh! We hit and error and cannot update the entry');
                     }
                     console.log(result);
                 },

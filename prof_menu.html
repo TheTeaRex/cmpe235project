@@ -76,7 +76,7 @@
       <div data-role='content'>
         <!-- if there is a class to select -->
         <div name='selectclassdiv' id='selectclassdiv' style='display:none'>
-          <form name='selectclass_form' id=selectclass_form' method ='post' action='updateClass_confirmation.php'>
+          <form id='selectclass_form'>
 
             <b>Select A Class:</b>
             <select name='selectclassselect' id='selectclassselect' data-native-menu='false' onChange='loadClassInfo()'>
@@ -108,8 +108,8 @@
               <br>
               <input type='hidden' name='selectcompSize' id='selectcompSize'>
               <div class='ui-grid-a'>
-                <div class='ui-block-a'><input type='submit' onClick='return submitForm(this)' name='action' class='ui-btn ui-btn-b ui-shadow ui-corner-all' data-icon='delete' value='Delete Class'></div>
-                <div class='ui-block-b'><input type='submit' onClick='return submitForm(this)' name='action' class='ui-btn ui-btn-b ui-shadow ui-corner-all' data-icon='check' value='Submit'></div>
+                <div class='ui-block-a'><input type='submit' id='deleteClass' name='action' class='ui-btn ui-btn-b ui-shadow ui-corner-all' data-icon='delete' value='Delete Class'></div>
+                <div class='ui-block-b'><input type='submit' id='updateClass' name='action' class='ui-btn ui-btn-b ui-shadow ui-corner-all' data-icon='check' value='Submit'></div>
               </div>
 
             </div>
