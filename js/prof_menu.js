@@ -361,7 +361,7 @@ function loadSampleStudentInfo() {
         }
     }
 
-    xhttp.open('GET', 'http://tearexprojects.com/project/ajaxSampleStudent.php', true);
+    xhttp.open('GET', 'http://cmpe235class.com/sushainnn/ajaxSampleStudent.php', true);
     xhttp.send();
 }
 
