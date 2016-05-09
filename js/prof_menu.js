@@ -205,7 +205,7 @@ function loadClassesToSelect() {
         }
     }
 
-    xhttp.open('GET', 'http://tearexprojects.com/project/getClasses.php', true);
+    xhttp.open('GET', 'http://tearexprojects.com/project/getClassesSorted.php', true);
     xhttp.send();
 }
 
@@ -232,7 +232,7 @@ function loadClassesToSelectGrade() {
         }
     }
 
-    xhttp.open('GET', 'http://tearexprojects.com/project/getClasses.php', true);
+    xhttp.open('GET', 'http://tearexprojects.com/project/getClassesSorted.php', true);
     xhttp.send();
 }
 
@@ -259,7 +259,7 @@ function loadClassesToSetGrade() {
         }
     }
 
-    xhttp.open('GET', 'http://tearexprojects.com/project/getClasses.php', true);
+    xhttp.open('GET', 'http://tearexprojects.com/project/getClassesSorted.php', true);
     xhttp.send();
 }
 
@@ -310,7 +310,7 @@ function loadClassInfo() {
         }
     }
 
-    xhttp.open('GET', 'http://tearexprojects.com/project/getClasses.php', true);
+    xhttp.open('GET', 'http://tearexprojects.com/project/getClassesSorted.php', true);
     xhttp.send();
 }
 
@@ -342,7 +342,7 @@ function loadClassGrade() {
         }
     }
 
-    xhttp.open('GET', 'http://tearexprojects.com/project/getClasses.php', true);
+    xhttp.open('GET', 'http://tearexprojects.com/project/getClassesSorted.php', true);
     xhttp.send();
 }
 
@@ -415,7 +415,7 @@ function loadClassConfigForSample() {
         }
     }
 
-    xhttp.open('GET', 'http://tearexprojects.com/project/getClasses.php', true);
+    xhttp.open('GET', 'http://tearexprojects.com/project/getClassesSorted.php', true);
     xhttp.send();
 }
 
