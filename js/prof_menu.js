@@ -346,6 +346,25 @@ function loadClassGrade() {
     xhttp.send();
 }
 
+function loadSampleStudentInfo() {
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            var json = JSON.parse(xhttp.responseText);
+
+			console.log(json);
+			document.getElementById('samplelastname').innerHTML = json.lastname;
+			document.getElementById('samplefirstname').innerHTML = json.firstname;
+			document.getElementById('sampleemail').innerHTML = json.email;
+			document.getElementById('samplesid').innerHTML = json.sid;
+        }
+    }
+
+    xhttp.open('GET', 'http://tearexprojects.com/project/ajaxSampleStudent.php', true);
+    xhttp.send();
+}
+
 function loadClassConfigForSample() {
     var xhttp = new XMLHttpRequest();
     var maxComp = 10;
@@ -410,21 +429,13 @@ $(document).on('pageinit', '#gradescutoff', function(){
 $(document).on('pageinit', '#samplestudentgrade', function(){
     loadClassesToSetGrade();
 });
+$(document).on('pageinit', '#samplestudentinfo', function(){
+    loadSampleStudentInfo();
+});
 
 function deleteClass() {
     var classname = document.getElementById('selectclassname').value;
     return confirm('Are you sure you want to delete ' + classname + '?');
-}
-
-function submitForm(obj) {
-    if (obj.value == 'Create Class') {
-        return formValidation("classname", "components", "compSize")
-    } else if (obj.value == 'Submit') {
-        return formValidation("selectclassname", "editComponents", "selectcompSize")
-    } else if (obj.value == 'Delete Class') {
-        return deleteClass();
-    }
-    return false;
 }
 
 function previewgrades(alertOn) {
