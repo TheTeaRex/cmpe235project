@@ -521,6 +521,30 @@ function previewgrades(alertOn) {
         alertstr += 'A Min needs to be smaller than 100.\n';
         $('#amin').addClass('invalid');
     }
+    if (bmin >= 100) {
+        alertstr += 'B Min needs to be smaller than 100.\n';
+        $('#bmin').addClass('invalid');
+    }
+    if (cmin >= 100) {
+        alertstr += 'C Min needs to be smaller than 100.\n';
+        $('#cmin').addClass('invalid');
+    }
+    if (dmin >= 100) {
+        alertstr += 'D Min needs to be smaller than 100.\n';
+        $('#dmin').addClass('invalid');
+    }
+    if (amin <= 0) {
+        alertstr += 'A Min needs to be larger than 0.\n';
+        $('#amin').addClass('invalid');
+    }
+    if (bmin <= 0) {
+        alertstr += 'B Min needs to be larger than 0.\n';
+        $('#bmin').addClass('invalid');
+    }
+    if (cmin <= 0) {
+        alertstr += 'C Min needs to be larger than 0.\n';
+        $('#cmin').addClass('invalid');
+    }
     if (dmin <= 0) {
         alertstr += 'D Min needs to be larger than 0.\n';
         $('#dmin').addClass('invalid');
