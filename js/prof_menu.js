@@ -38,8 +38,10 @@ function formValidation(classinput, componentinput, sizeinput) {
                 return false;
         }
         if (isNaN(temp.getElementsByTagName('input')[1].value.trim()) ||
-            isNaN(temp.getElementsByTagName('input')[2].value.trim()) ) {
-                alert('Please make sure all the Max Point and Percentage enteries are integers');
+            isNaN(temp.getElementsByTagName('input')[2].value.trim()) ||
+            parseInt(temp.getElementsByTagName('input')[1].value.trim()) < 0 ||
+            parseInt(temp.getElementsByTagName('input')[2].value.trim()) < 0 ) {
+                alert('Please make sure all the Max Point and Percentage enteries are positive integers');
                 return false;
         }
         percentage += parseInt(temp.getElementsByTagName('input')[2].value.trim());
