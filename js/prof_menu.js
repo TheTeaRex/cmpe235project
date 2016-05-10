@@ -90,6 +90,10 @@ $(document).ready( function(){
     });
 
     $('#deleteClass').click (function(event) {
+        if (!confirm('Are you sure?')) {
+            return false;
+        }
+
         var datastr = $('#selectclass_form').serialize() + '&action=Delete+Class';
         console.log(datastr);
         event.preventDefault();
