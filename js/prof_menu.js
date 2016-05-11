@@ -375,6 +375,7 @@ function loadClassConfigForSample() {
     var xhttp = new XMLHttpRequest();
     var maxComp = 10;
 
+    document.getElementById('samplegrades').innerHTML = '';
     var str = "<div><b>{itemstr}:</b><b style='float:right' name='{perstr}' id='{perstr}'></b></div>";
     str += "<input type='range' name='{namestr}' id='{namestr}' min='0' max='{max}' value='{value}' onChange='updateGrade()'/>";
 
