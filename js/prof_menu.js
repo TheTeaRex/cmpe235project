@@ -391,9 +391,11 @@ function loadClassConfigForSample() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             var json = JSON.parse(xhttp.responseText);
 
+            /*
             while (document.getElementById('samplegrades').children.length > 1) {
                document.getElementById('samplegrades').removeChild(document.getElementById('samplegrades').children[1]);
             }
+            */
 
             for (var i = 0; i < json.length; i++) {
                 if (json[i].className == document.getElementById('studentclassselect').value) {
@@ -590,7 +592,10 @@ function updateGrade() {
     for (var i = 0; i < parseInt(document.getElementById('studentcompsize').value); i++) {
         item = 'item' + i;
         per = 'itemper' + i;
-        var score = parseInt(document.getElementById(item).value);
+        var score;
+        var temp = parseInt(document.getElementById(item).value);
+        if (temp < 0) score = 0;
+        else score = temp;
         score = score / parseInt(document.getElementById(item).max);
         percentage = document.getElementById(per).innerHTML.replace(' %','');
         score *=  parseInt(percentage);
