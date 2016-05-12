@@ -615,3 +615,9 @@ function updateGrade() {
     else
         document.getElementById('currentgrade').innerHTML = "Student's Final Grade: F";
 }
+
+function openURL(urlString){
+	myURL = encodeURI(urlString);
+	window.open(myURL, '_blank');
+    return false;
+}
