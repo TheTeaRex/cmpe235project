@@ -1,0 +1,243 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1">
+		<meta charset="utf-8">
+		<title>Grade Calculator</title>
+		<!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />-->
+		<link rel="stylesheet" href="css/jquery.mobile.flatui.css"/>
+		<link rel="stylesheet" href="css/style.css"/>
+		
+		<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+		<!-- <script src="js/underscore.js"></script> -->
+		<script src="https://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+
+		<!-- <script type="text/javascript" src="js/jquery.js"></script> -->
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#signupBtn").click(function(){	
+					var email=$("#email").val();
+					var password=$("#password").val();
+					var password2=$("#password2").val();
+					var fname=$("#fname").val();
+					var lname=$("#lname").val();
+					var phone=$("#phone").val();
+
+					var data2 = {}
+
+					data2.email = email;
+					data2.password = password;
+					data2.password2 = password2;
+					data2.fname = fname;
+					data2.lname = lname;
+					data2.phone = phone;
+					data2.signup = true;
+
+					if(true || $.trim(email).length>0 & $.trim(password).length>0 & $.trim(password2).length>0) {
+						console.log("Making ajax call...")
+						$.ajax({
+							type: "POST",
+							url: "http://localhost/cmpe/signup.php",
+							data: data2,
+							crossDomain: true,
+							cache: false,
+							//beforeSend: function(){ $("#signupBtn").val('Connecting...');},
+							success: function(data){
+								console.log(data);
+								if(data.search("success") != -1)
+								{
+									alert("Thank you for Registering with us! you can login now");
+								$(location).attr('href', 'http://tearexprojects.com/project/prof_menu.html')	
+								}
+								else if(data.search("exist") != -1)
+								{
+									alert("Hey! You alreay have an account! you can login with us");
+								$(location).attr('href', 'http://tearexprojects.com/project/prof_menu.html')
+								}
+								else if(data.search("Error") != -1)
+								{
+									alert("Something Went wrong");
+								}
+							}
+						});
+					}return false;
+				});
+			});
+			$(document).ready(function(){
+				$("#loginBtn").click(function(){	
+					var email=$("#email").val();
+					var password=$("#password").val();
+
+					var data2 = {}
+
+					data2.email = email;
+					data2.password = password;
+					data2.login = true;
+
+					if(true || $.trim(email).length>0 & $.trim(password).length>0 & $.trim(password2).length>0) {
+						console.log("Making login ajax call...")
+						$.ajax({
+							type: "POST",
+							url: "http://localhost/cmpe/login.php",
+							data: data2,
+							crossDomain: true,
+							cache: false,
+							//beforeSend: function(){ $("#signupBtn").val('Connecting...');},
+							success: function(data){
+								console.log(data);
+								if(data.search("fail") != -1)
+								{
+									alert("Do you have an account?");
+								//$(location).attr('href', 'http://tearexprojects.com/project/prof_menu.html')
+								}
+								else if(data.search("exist") != -1)
+								{
+									alert("welcome!");
+								$(location).attr('href', 'http://tearexprojects.com/project/prof_menu.html')
+								}
+								else if(data.search("Error") != -1)
+								{
+									alert("Something Went wrong");
+								}
+							}
+						});
+					}return false;
+				});
+			});
+
+		</script>
+	</head>
+
+	<body>
+
+		<!--landing page-->
+		<div data-role="page" id="home">
+			<div data-role="header">
+				<a data-iconpos="notext" href="#userhome" data-role="button" data-icon="flat-man"
+				title="Home" id="landingHomeIcon">Home</a>
+				<h1>Cool Grader</h1>
+				<button class="nav-dropdown" data-iconpos="notext" data-icon="flat-menu"></button>
+				<ul class="nav-dropdown-list" data-role="listview" data-theme="c">
+					<li><a href="#home">Cool Grader Home</a></li>
+					<li><a href="#login">Login</a></li>
+					<li><a href="#signup">Signup</a></li>
+				</ul>
+			</div><!-- /header -->
+
+			<div data-role="main" class="ui-content">
+				<div id="beforeLoginHome">
+					<h2 class="mc-text-center">Welcome to Cool Grader!</h2>
+					<br><br>
+					<p class="mc-top-margin-1-5 mc-text-center"><b>Existing Users</b></p>
+					<a href="#login" class="ui-btn ui-btn-e ui-corner-all">Login</a>
+					<br>
+					<p class="mc-top-margin-1-5 mc-text-center"><b>Don't have an account?</b></p>
+					<a href="#signup" class="ui-btn ui-btn-b ui-corner-all">Sign Up</a>
+				</div>
+<!--				<div id="afterLoginHome">
+					<p class="mc-top-margin-1-5 mc-text-center"><b>Want to leave?</b></p>
+					<button class="logoutBtn" data-theme="d">Logout</button>
+				</div> -->
+
+				<p></p>
+			</div><!-- /content -->
+		</div><!-- /landing page -->
+
+		<!--login page-->
+		<div data-role="page" id="login">
+			<div data-role="header">
+				<a data-iconpos="notext" href="#home" data-role="button" data-icon="home" title="Home">Home</a>
+				<h1>Login</h1>
+				<button class="nav-dropdown" data-iconpos="notext" data-icon="flat-menu"></button>
+				<ul class="nav-dropdown-list" data-role="listview" data-theme="c">
+					<li><a href="#home">Home</a></li>
+					<li><a href="#login">Login</a></li>
+					<li><a href="#signup">Signup</a></li>
+				</ul>
+			</div><!-- /header -->
+			<div data-role="content"  class="ui-content">
+				<form id="loginForm">
+					<div class="fieldcontain">
+						<span class="ui-icon ui-icon-flat-mail ui-icon-shadow form-icon"></span>
+						<input type="text" name="email" placeholder="Email" required/>
+					</div>
+					<div class="fieldcontain">
+						<span class="ui-icon ui-icon-flat-lock ui-icon-shadow form-icon">&nbsp;</span>
+						<input type="password" name="password" placeholder="Password" required/>
+					</div>
+
+					<button id="loginBtn" data-theme="b">Login</button>
+					<!--TODO: error alert dialoge-->
+				</form>
+			</div><!-- /content -->
+		</div><!-- /login page -->
+
+		<!--Signup page-->
+		<div data-role="page" id="signup">
+			<div data-role="header">
+				<a data-iconpos="notext" href="#home" data-role="button" data-icon="home" title="Home">Home</a>
+				<h1>Sign Up</h1>
+				<button class="nav-dropdown" data-iconpos="notext" data-icon="flat-menu"></button>
+				<ul class="nav-dropdown-list" data-role="listview" data-theme="c">
+					<li><a href="#home">Home</a></li>
+					<li><a href="#login">Login</a></li>
+					<li><a href="#signup">Signup</a></li>
+				</ul>
+			</div><!-- /header -->
+			<div data-role="content"  class="ui-content">
+				<form id="signupForm" name="signup" method="post">
+					<!--select user type teacher or student-->
+					<div data-role="fieldcontain">
+						<div class="ui-grid-a">
+							<div class="ui-block-a"><label for="select-choice-a" class="mc-text-right">I am a:</label></div>
+							<div class="ui-block-b">
+								<select name="userType" id="select-choice-a" data-native-menu="false" data-theme="f">
+									<option value="Student">Student</option>
+									<option value="Teacher">Teacher</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="fieldcontain">
+						<span class="ui-icon ui-icon-flat-mail ui-icon-shadow form-icon"></span>
+						<input type="text" name="email" placeholder="Email" id="email" required/>
+					</div>
+					<div class="fieldcontain">
+						<span class="ui-icon ui-icon-flat-lock ui-icon-shadow form-icon">&nbsp;</span>
+						<input type="password" name="password" placeholder="Password" id = "password" required/>
+					</div>
+					<div class="fieldcontain">
+						<span class="ui-icon ui-icon-flat-lock ui-icon-shadow form-icon">&nbsp;</span>
+						<input type="password" name="password2" placeholder="Confirm Password" id = "password2" required/>
+					</div>
+					<div class="fieldcontain">
+						<span class="ui-btn-icon-notext ui-icon-info form-icon2"></span>
+						<input type="text" name="fname" placeholder="First name" id = "fname"/>
+					</div>
+					<div class="fieldcontain">
+						<span class="ui-btn-icon-notext ui-icon-info form-icon2"></span>
+						<input type="text" name="lname" placeholder="Last name" id = "lname"/>
+					</div>
+
+					<div class="fieldcontain">
+						<span class="ui-btn-icon-notext ui-icon-phone form-icon2"></span>
+						<input type="text" name="phone" placeholder="Phone Number" id = "phone"/>
+					</div>
+
+					<button id="signupBtn" type="submit" value='Submit' data-theme="b">Sign Up</button>
+
+					<!--TODO: error alert popup-->
+
+				</form>
+			</div><!-- /content -->
+		</div><!-- /Signup page -->
+
+
+		
+		<!-- <script type="text/javascript" src="cordova.js"></script> -->
+		<!-- <script src="js/app.js"></script> -->
+	</body>
+	</body>
+	</body>
+	</html>
+	

@@ -1,0 +1,107 @@
+.nav-dropdown-list {
+    display: none;
+}
+
+.mc-text-center{
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.mc-text-right{
+    text-align: right;
+    margin-right: 10%;
+}
+
+.form-icon {
+    position: absolute;
+    width: 50px;
+    height: 80px;
+    right: 10px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.form-icon2{
+    position: absolute;
+    width: 50px;
+    height: 20px;
+    right: 10px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#signupForm .form-icon2:after{
+    background-color: black;
+}
+
+h4 {
+    margin: 0.5em auto;
+}
+
+.ui-field-contain{
+    margin: 1% auto;
+}
+
+.ui-field-contain label{
+    width: 100%;
+}
+
+#signupForm label{
+    height: 50px;
+    font-size: 2em;
+    text-align: center;
+
+}
+
+
+p.percent-error{
+    display: none;
+    font-size: larger;
+    color: red;
+}
+
+#enrollCourse p.no-courses{
+    display: none;
+}
+
+@media ( min-width: 25em ) {
+    /* Show the table header rows and set all cells to display: table-cell */
+    .table-breakpoint td,
+    .table-breakpoint th,
+    .table-breakpoint tbody th,
+    .table-breakpoint tbody td,
+    .table-breakpoint thead td,
+    .table-breakpoint thead th {
+        display: table-cell;
+        margin: 0;
+    }
+    /* Hide the labels in each cell */
+    .table-breakpoint td .ui-table-cell-label,
+    .table-breakpoint th .ui-table-cell-label {
+        display: none;
+    }
+}
+
+th {
+    border-bottom: 1px solid #d6d6d6;
+    background: #e9e9e9;
+}
+
+tr {
+    border-bottom: 1px solid #d6d6d6;
+}
+
+div.ui-slider{
+    width: 90%;
+    float:left;
+}
+
+label.max{
+    line-height: 45px;
+    text-align: center;
+}
+
+.student-grade{
+    line-height: 100px;
+}
