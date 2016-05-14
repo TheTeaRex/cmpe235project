@@ -27,7 +27,7 @@ function getNotes() {
         }//if
     }
 
-    xhttp.open('GET', 'http://tearexprojects.com/project/getnotes.php', true);
+    xhttp.open('GET', 'http://thenergal.com/202project/getNotes.php', true);
     xhttp.send();
 
 }
@@ -127,7 +127,7 @@ function noteValidation(noteinput) {
     $.ajax({
       data: data,
       type: "post",
-      url: "http://tearexprojects.com/project/insertNote.php",
+      url: "http://thenergal.com/202project/insertNote.php",
       success: function(data){
         document.location.href = 'prof_menu.html#notes';
 
