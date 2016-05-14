@@ -91,6 +91,7 @@ function loadClassInfoNEW() {
                     break;
                 }
             }
+            getNotes();
         }
     }
 
