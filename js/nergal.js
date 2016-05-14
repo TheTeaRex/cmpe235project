@@ -129,7 +129,7 @@ function noteValidation(noteinput) {
       type: "post",
       url: "http://tearexprojects.com/project/insertNote.php",
       success: function(data){
-        document.location.href = 'prof_menu.html';
+        document.location.href = 'prof_menu.html#notes';
 
       }
   });
