@@ -3,12 +3,12 @@
 
 <head>
     <title>Welcome to Professor Menu</title>
-    <script type="text/javascript" charset="utf-8" src="opentok.js"></script>
     <link rel='stylesheet' href='http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css' />
     <link rel='stylesheet' href='css/prof_menu.css' />
     <script src='http://code.jquery.com/jquery-1.11.0.min.js'></script>
     <script src='http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js'></script>
     <script src='js/prof_menu.js'></script>
+    <script src='js/nergal.js'></script>
     <link rel="stylesheet" href="css/jquery.mobile.flatui.css"/>
     <style type="text/css">
         body {
@@ -66,11 +66,120 @@
             <a href='http://waynefullstackdeveloper.com/cs50hardvardsyllabus.pdf' data-transition='pop' class="btn btn-block btn-lg btn-warning"><span class="fui-folder"></span>Sample Green Sheet</a>
             <a href='http://thenergal.com/202project/samplestudentVertical.html' data-transition='pop' class="btn btn-block btn-lg btn-default"><span class="fui-bookmark"></span>Sample Student's Information</a>
             <a href='#samplestudentinfo' data-transition='pop' class="btn btn-block btn-lg btn-success"><span class="fui-list-bulleted"></span>Sample Student's Information (AJAX Style)</a>
-            <!-- <a href='#samplestudentinfo' data-transition='pop' class="btn btn-block btn-lg btn-default"><span class="fui-video"></span>Online meeting</a> -->
         </div>
 
+  <div data-role="footer">
+      <div data-role="navbar">
+          <ul>
+            <li><a href="#menu" class="ui-btn-active ui-state-persist" data-icon="home" id="menu">Home</a></li>
+            <li><a href="#notes" data-icon="comment" id="comment">Your Notes</a></li>
+            <li><a href="#aboutUs" data-icon="info" id="info">About Us</a></li>
+            <!--<li><a href="#" data-icon="search">Search</a></li>-->
+          </ul>
+      </div>
+  </div>
     </div>
     <!-- end of the menu -->
+
+
+<!-- PAGE 2 -->
+<div data-role="page" id="notes">
+  <div data-role="header">
+    <a href='#menu' data-transition='slide' data-icon='back'>Back</a>
+    <h1>My Notes</h1>
+  </div> 
+
+
+<div data-role='content'>
+<p>Notes:</p>
+        <!-- if there is a class to select -->
+        <div name='selectclassdivN' id='selectclassdivN' style='display:none'>
+          <form name='addnote_form' id='addnote_form'>
+
+            <b>Select A Class:</b>
+            <select name='selectclassselectN' id='selectclassselectN' data-native-menu='false' onChange='loadClassInfoNEW()'>
+              <option value="choose_one" data-placeholder="true">Choose one...</option>
+            </select>
+
+            <div name='editclassN' id='editclassN' style='display:none'>
+              <div>
+                <b>Enter a note</b>
+                <input type='text' name='selectclassnameN' id='selectclassnameN' enabled>
+     
+              </div>
+
+              <br>
+              
+              <input type='hidden' name='notetext' id='notetext' enabled>
+              
+               <!-- <div ><input type='submit' onClick='return submitFormNote(this)' name='action' class='ui-btn ui-btn-b ui-shadow ui-corner-all' data-icon='check' value='Submit'></div> -->
+
+<div ><input type='submit' name='action' id='insertnote' class='ui-btn ui-btn-b ui-shadow ui-corner-all' data-icon='check' value='Submit'></div> 
+
+
+            </div>
+            
+         <div name='getmynote' id='getmynote' align='center' style='display:none' data-role="none">
+             <b>My Saved Notes</b><br />
+             <textarea readonly name='savedNotes' id='savedNotes' style="overflow:auto;"></textarea>
+             <input type="button" value="Show Note" onClick="getNotes(this);" data-icon='check'>
+         </div>
+
+          </form>
+          <span id="result"></span>
+          
+
+          
+        </div>
+        <!-- if there is no class to select -->
+        <div name='noclassdivN' id='noclassdivN' align='center' style='display:block'>
+          <p><b>
+            Currently there is not a class in the database
+           </b></p>
+        </div>
+
+  </div>
+
+  <div data-role="footer">
+      <div data-role="navbar">
+          <ul>
+            <li><a href="#menu" data-icon="home" id="menu">Home</a></li>
+            <li><a href="#notes" class="ui-btn-active ui-state-persist" data-icon="comment" id="comment">Your Notes</a></li>
+            <li><a href="#aboutUs" data-icon="info" id="info">About Us</a></li>
+            <!--<li><a href="#" data-icon="search">Search</a></li>-->
+          </ul>
+      </div>
+  </div>
+</div> 
+
+<!-- PAGE 3 -->
+<div data-role="page" id="aboutUs">
+  <div data-role="header">
+    <h1>Who Are We?</h1>
+  </div> 
+
+  <div data-role="main" class="ui-content">
+    <h3>Our team members:</h3>
+    <p><ul><li><b>Alan Chan</b>, alan.chan@sjsu.edu</li>
+       <li><b>Wayne Lin</b>, waynelemars@gmail.com</li>
+       <li><b>Sushain Nadagoundla</b>, sushain.nadagoundla@sjsu.com</li>
+       <li><b>Nergal Issaie</b>, nissaie16@gmail.com</li></ul>
+    </p>
+  </div>
+
+
+
+  <div data-role="footer">
+      <div data-role="navbar">
+          <ul>
+            <li><a href="#menu" data-icon="home" id="menu">Home</a></li>
+            <li><a href="#notes" data-icon="comment" id="comment">Your Notes</a></li>
+            <li><a href="#aboutUs" class="ui-btn-active ui-state-persist" data-icon="info" id="info">About Us</a></li>
+            <!--<li><a href="#" data-icon="search">Search</a></li>-->
+          </ul>
+      </div>
+  </div>
+</div>
 
 
     <!-- add a class -->
@@ -124,6 +233,16 @@
                 <input type='submit' class='ui-btn ui-btn-b ui-shadow ui-corner-all btn-primary' value=' <span class="fui-check"> Create Class'>
             </form>
         </div>
+  <div data-role="footer">
+      <div data-role="navbar">
+          <ul>
+            <li><a href="#menu" class="ui-btn-active ui-state-persist" data-icon="home" id="menu">Home</a></li>
+            <li><a href="#notes" data-icon="comment" id="comment">Your Notes</a></li>
+            <li><a href="#aboutUs" data-icon="info" id="info">About Us</a></li>
+            <!--<li><a href="#" data-icon="search">Search</a></li>-->
+          </ul>
+      </div>
+  </div>
     </div>
     <!-- end of the add a class -->
 
@@ -204,6 +323,16 @@
           </b></p>
             </div>
         </div>
+  <div data-role="footer">
+      <div data-role="navbar">
+          <ul>
+            <li><a href="#menu" class="ui-btn-active ui-state-persist" data-icon="home" id="menu">Home</a></li>
+            <li><a href="#notes" data-icon="comment" id="comment">Your Notes</a></li>
+            <li><a href="#aboutUs" data-icon="info" id="info">About Us</a></li>
+            <!--<li><a href="#" data-icon="search">Search</a></li>-->
+          </ul>
+      </div>
+  </div>
     </div>
     <!-- end of the select a class -->
 
@@ -318,6 +447,16 @@
           </b></p>
             </div>
         </div>
+  <div data-role="footer">
+      <div data-role="navbar">
+          <ul>
+            <li><a href="#menu" class="ui-btn-active ui-state-persist" data-icon="home" id="menu">Home</a></li>
+            <li><a href="#notes" data-icon="comment" id="comment">Your Notes</a></li>
+            <li><a href="#aboutUs" data-icon="info" id="info">About Us</a></li>
+            <!--<li><a href="#" data-icon="search">Search</a></li>-->
+          </ul>
+      </div>
+  </div>
     </div>
     <!-- end of the setting grade cutoff -->
 
@@ -352,6 +491,16 @@
           </b></p>
             </div>
         </div>
+  <div data-role="footer">
+      <div data-role="navbar">
+          <ul>
+            <li><a href="#menu" class="ui-btn-active ui-state-persist" data-icon="home" id="menu">Home</a></li>
+            <li><a href="#notes" data-icon="comment" id="comment">Your Notes</a></li>
+            <li><a href="#aboutUs" data-icon="info" id="info">About Us</a></li>
+            <!--<li><a href="#" data-icon="search">Search</a></li>-->
+          </ul>
+      </div>
+  </div>
     </div>
     <!-- end of sample student grade -->
 
@@ -360,7 +509,7 @@
     <div data-role='page' id='samplestudentinfo'>
         <div data-role='header'>
           <a href='#menu' data-transition='slide' data-iconpos="notext" data-role="button" data-icon="home" title="Home">Home</a>
-            <h1>Sample Student Info</h1>
+          <h1>Sample Student Info</h1>
         </div>
 
         <div data-role='content'>
@@ -384,8 +533,20 @@
                 <br>
             </ol>
         </div>
+  <div data-role="footer">
+      <div data-role="navbar">
+          <ul>
+            <li><a href="#menu" class="ui-btn-active ui-state-persist" data-icon="home" id="menu">Home</a></li>
+            <li><a href="#notes" data-icon="comment" id="comment">Your Notes</a></li>
+            <li><a href="#aboutUs" data-icon="info" id="info">About Us</a></li>
+            <!--<li><a href="#" data-icon="search">Search</a></li>-->
+          </ul>
+      </div>
+  </div>
     </div>
     <!-- end of sample student info -->
+
+
 </body>
 
 </html>
