@@ -146,7 +146,7 @@ function noteValidation(noteinput) {
 function loadNotesAgain() {  
   $.ajax({
     type: "get",
-    url: "notesIntegration.html#notes",
+    url: "prof_menu.html#notes",
     success: function() {
     }
   });
